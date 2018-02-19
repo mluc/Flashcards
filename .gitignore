@@ -1,0 +1,6 @@
+yarn.lock
+.DS_Store
+.idea/
+node_modules/
+.expo/
+npm-debug.*
