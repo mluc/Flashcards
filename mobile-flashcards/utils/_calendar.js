@@ -12,21 +12,37 @@ function setDummyData () {
 
     let dummyData = {}
     const timestamp = Date.now()
-
-    for (let i = -183; i < 0; i++) {
-        const time = timestamp + i * 24 * 60 * 60 * 1000
-        const strTime = timeToString(time)
-        dummyData[strTime] = getRandomNumber(3) % 2 === 0
-            ? {
-                run: getRandomNumber(run.max),
-                bike: getRandomNumber(bike.max),
-                swim: getRandomNumber(swim.max),
-                sleep: getRandomNumber(sleep.max),
-                eat: getRandomNumber(eat.max),
+    const strTime = timeToString(timestamp)
+    dummyData[strTime] = {
+        run:2,
+        bike:3,
+        swim:3,
+        eat:4,
+        sleep:4,
+        cards: [
+            {
+                question: "What is capital of Texas?",
+                answers: ["Houston", "Austin"],
+                correctAnswer: "Austin"
+            },
+            {
+                question: "What is capital of VietNam?",
+                answers: ["Ha Noi", "Ho Chi Minh"],
+                correctAnswer: "Ho Chi Minh"
             }
-            : null
+            ]
     }
 
+    var date = new Date();
+    date.setDate(date.getDate() - 1);
+    dummyData[timeToString(date)] = {
+        run:12,
+        bike:13,
+        swim:13,
+        eat:14,
+        sleep:14,
+        cards:[]
+    }
     AsyncStorage.setItem(CALENDAR_STORAGE_KEY, JSON.stringify(dummyData))
 
     return dummyData
@@ -49,7 +65,5 @@ function setMissingDates (dates) {
 }
 
 export function formatCalendarResults (results) {
-    return results === null
-        ? setDummyData()
-        : setMissingDates(JSON.parse(results))
+    return setDummyData()
 }

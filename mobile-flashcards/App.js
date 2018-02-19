@@ -5,6 +5,7 @@ import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 import reducer from './reducers'
 import History from './components/History'
+import Desks from './components/Desks'
 import { TabNavigator, StackNavigator } from 'react-navigation'
 import { purple, white } from './utils/colors'
 import { FontAwesome, Ionicons } from '@expo/vector-icons'
@@ -22,6 +23,13 @@ function UdaciStatusBar ({backgroundColor, ...props}) {
 }
 
 const Tabs = TabNavigator({
+    Desks: {
+        screen: Desks,
+        navigationOptions: {
+            tabBarLabel: 'Desks',
+            tabBarIcon: ({ tintColor }) => <Ionicons name='ios-bookmarks' size={30} color={tintColor} />
+        },
+    },
     History: {
         screen: History,
         navigationOptions: {
