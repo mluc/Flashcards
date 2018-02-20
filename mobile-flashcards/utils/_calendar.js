@@ -13,24 +13,29 @@ function setDummyData () {
     let dummyData = {}
     const timestamp = Date.now()
     const strTime = timeToString(timestamp)
+
+    const card1 = {}
+    card1["question"] = "What is capital of Texas?"
+    card1["answers"] = ["Houston", "Austin"]
+    card1["correctAnswer"] = "Austin"
+
+    const card2 = {}
+    card2["question"] = "What is capital of VietNam?"
+    card2["answers"] = ["Ha Noi", "Ho Chi Minh"]
+    card2["correctAnswer"] = "Ho Chi Minh"
+
+    const card3 = {}
+    card3["question"] = "What is capital of VietNam?"
+    card3["answers"] = ["Ha Noi", "Ho Chi Minh"]
+    card3["correctAnswer"] = "Ho Chi Minh"
+
     dummyData[strTime] = {
         run:2,
         bike:3,
         swim:3,
         eat:4,
         sleep:4,
-        cards: [
-            {
-                question: "What is capital of Texas?",
-                answers: ["Houston", "Austin"],
-                correctAnswer: "Austin"
-            },
-            {
-                question: "What is capital of VietNam?",
-                answers: ["Ha Noi", "Ho Chi Minh"],
-                correctAnswer: "Ho Chi Minh"
-            }
-            ]
+        cards: [card1, card2, card3]
     }
 
     var date = new Date();

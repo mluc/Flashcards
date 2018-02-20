@@ -11,6 +11,9 @@ import { purple, white } from './utils/colors'
 import { FontAwesome, Ionicons } from '@expo/vector-icons'
 import { Constants } from 'expo'
 import EntryDetail from './components/EntryDetail'
+import DeskDetail from './components/DeskDetail'
+import AddCard from './components/AddCard'
+import Quiz from './components/Quiz'
 import Live from './components/Live'
 import { setLocalNotification } from './utils/helpers'
 
@@ -77,6 +80,33 @@ const MainNavigator = StackNavigator({
     },
     EntryDetail: {
         screen: EntryDetail,
+        navigationOptions: {
+            headerTintColor: white,
+            headerStyle: {
+                backgroundColor: purple,
+            }
+        }
+    },
+    DeskDetail: {
+        screen: DeskDetail,
+        navigationOptions: {
+            headerTintColor: white,
+            headerStyle: {
+                backgroundColor: purple,
+            }
+        }
+    },
+    AddCard: {
+        screen: AddCard,
+        navigationOptions: {
+            headerTintColor: white,
+            headerStyle: {
+                backgroundColor: purple,
+            }
+        }
+    },
+    Quiz: {
+        screen: Quiz,
         navigationOptions: {
             headerTintColor: white,
             headerStyle: {

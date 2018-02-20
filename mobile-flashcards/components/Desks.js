@@ -35,13 +35,13 @@ class Desks extends Component {
                     return (
                         <TouchableOpacity
                             onPress={() => this.props.navigation.navigate(
-                                'EntryDetail',
+                                'DeskDetail',
                                 {entryId: key}
                             )}
                             key={key}
                         >
                             <View style={styles.item} key={key}>
-                                <Text style={{fontSize: 20}}>
+                                <Text style={{color: purple, fontSize: 25}}>
                                     {key}
                                 </Text>
                                 <Text style={{fontSize: 16, color: gray}}>
@@ -55,6 +55,7 @@ class Desks extends Component {
         )
     }
 }
+
 const styles = StyleSheet.create({
     item: {
         backgroundColor: white,
