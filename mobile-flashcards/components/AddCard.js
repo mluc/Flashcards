@@ -1,6 +1,5 @@
 import React, {Component} from "react";
 import {Platform, StyleSheet, Text, TextInput, TouchableOpacity, View} from "react-native";
-import RadioButton from "react-native-radio-button";
 
 import {timeToString} from "../utils/helpers";
 import {connect} from "react-redux";
@@ -24,10 +23,7 @@ class AddCard extends Component {
     }
     state = {
         question: null,
-        answerA: null,
-        checkedA: true,
-        answerB: null,
-        checkedB: false
+        answer: null,
     }
     submit = () => {
     }
@@ -35,51 +31,30 @@ class AddCard extends Component {
     render() {
         return (
             <View style={styles.center}>
+
                 <Text style={{color: purple, fontSize: 25}}>
                     Question:
                 </Text>
 
+
+                <TextInput
+                    style={styles.textInput}
+                    multiline={true}
+                    numberOfLines={2}
+                    onChangeText={(text) => this.setState({question: text})}
+                    value={this.state.question}
+                />
+                <Text style={{color: purple, fontSize: 25}}>
+                    Answer:
+                </Text>
                 <TextInput
                     style={styles.textInput}
                     multiline={true}
                     numberOfLines={4}
-                    onChangeText={(text) => this.setState({question: text})}
-                    value={this.state.question}
+                    onChangeText={(text) => this.setState({answer: text})}
+                    value={this.state.answer}
                 />
-                <View style={styles.row}>
-                    <Text style={{color: purple, fontSize: 20}}>
-                        Answer a: Is correct? { ' '}
-                    </Text>
-                    <RadioButton
-                        isSelected={this.state.checkedA}
-                        onPress={() => this.setState({checkedA: !this.state.checkedA, checkedB: !this.state.checkedB})}
-                        innerColor={purple}
-                        outerColor={purple}
-                    />
-                </View>
 
-                <TextInput
-                    style={styles.textInput}
-                    onChangeText={(text) => this.setState({answerA: text})}
-                    value={this.state.answerA}
-                />
-                <View style={styles.row}>
-                    <Text style={{color: purple, fontSize: 20}}>
-                        Answer b: Is correct? { ' '}
-                    </Text>
-                    <RadioButton
-                        isSelected={this.state.checkedB}
-                        onPress={() => this.setState({checkedB: !this.state.checkedB, checkedA: !this.state.checkedA})}
-                        innerColor={purple}
-                        outerColor={purple}
-                    />
-                </View>
-
-                <TextInput
-                    style={styles.textInput}
-                    onChangeText={(text) => this.setState({answerB: text})}
-                    value={this.state.answerB}
-                />
                 <SubmitBtn onPress={this.submit}/>
             </View>
         )
@@ -129,7 +104,7 @@ const styles = StyleSheet.create({
     },
     center: {
         flex: 1,
-        justifyContent: 'space-around',
+        justifyContent: 'flex-start',
         alignItems: 'center',
         marginLeft: 30,
         marginRight: 30,
