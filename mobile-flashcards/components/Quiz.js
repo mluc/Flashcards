@@ -4,6 +4,7 @@ import RadioButton from "react-native-radio-button";
 import {timeToString} from "../utils/helpers";
 import {connect} from "react-redux";
 import {gray, purple, white} from "../utils/colors";
+import {NavigationActions} from 'react-navigation'
 
 function AnswerBtn({onPress}) {
     return (
@@ -23,6 +24,24 @@ function QuestionBtn({onPress}) {
         </TouchableOpacity>
     )
 }
+function TakeQuizAgainBtn({onPress}) {
+    return (
+        <TouchableOpacity
+            style={Platform.OS === 'ios' ? styles.iosSubmitBtn : styles.AndroidSubmitBtn}
+            onPress={onPress}>
+            <Text style={styles.submitBtnText}>Take Quiz Again</Text>
+        </TouchableOpacity>
+    )
+}
+function BackToDeskBtn({onPress}) {
+    return (
+        <TouchableOpacity
+            style={Platform.OS === 'ios' ? styles.iosSubmitBtn : styles.AndroidSubmitBtn}
+            onPress={onPress}>
+            <Text style={styles.submitBtnText}>Back To Desk</Text>
+        </TouchableOpacity>
+    )
+}
 
 class Quiz extends Component {
     static navigationOptions = () => {
@@ -39,10 +58,10 @@ class Quiz extends Component {
         checkedB: false,
         showQuestion: true,
         isDone: false,
-        currentCardIndex:-1
+        currentCardIndex: -1
     }
     prepareQuestion = (num) => {
-        this.setState(() => ({checkedA: false, checkedB:false, questionNum: num}))
+        this.setState(() => ({checkedA: false, checkedB: false, questionNum: num}))
 
     }
 
@@ -56,12 +75,24 @@ class Quiz extends Component {
     questionClick = () => {
         this.setState(() => ({showQuestion: true}))
     }
+    takeQuizAgainClick = () => {
+        this.props.navigation.dispatch(NavigationActions.back({key: 'Quiz'}))
+        this.setState(() => ({
+            correctCount: 0,
+            pickedAnswer: -1,
+            showQuestion: true,
+            isDone: false,
+            currentCardIndex: -1
+        }))
+        this.prepareQuestion(this.props.navigation.state.params.cards.length > 0 ? 1 : 0)
+    }
+
     checkAnswer = (isDone) => {
         this.props.navigation.state.params.cards.map((card, index) => {
-            if (index === this.state.currentCardIndex){
+            if (index === this.state.currentCardIndex) {
                 if ((this.state.checkedA && card.answers.indexOf(card.correctAnswer) == 0) ||
                     (this.state.checkedB && card.answers.indexOf(card.correctAnswer) == 1))
-                    this.setState(() => ({correctCount: this.state.correctCount +1}))
+                    this.setState(() => ({correctCount: this.state.correctCount + 1}))
             }
         })
         if (isDone)
@@ -72,12 +103,18 @@ class Quiz extends Component {
     render() {
 
         const {cards} = this.props.navigation.state.params
-        if(this.state.isDone){
+        if (this.state.isDone) {
             return (
-                <View style={{alignItems: 'center', justifyContent: 'center', flex:1}}>
+                <View style={styles.center}>
                     <Text style={{color: purple, fontSize: 25}}>
                         {this.state.correctCount} / {cards.length} correct!
                     </Text>
+                    <View style={{justifyContent: 'center'}}>
+                        <TakeQuizAgainBtn onPress={this.takeQuizAgainClick}/>
+                    </View>
+                    <View style={{justifyContent: 'center'}}>
+                        <BackToDeskBtn onPress={()=>this.props.navigation.dispatch(NavigationActions.back())}/>
+                    </View>
                 </View>
             )
         }
@@ -146,6 +183,7 @@ class Quiz extends Component {
                     }
                 })}
 
+
                 <TouchableOpacity
                     style={Platform.OS === 'ios' ? styles.iosSubmitBtn : styles.AndroidSubmitBtn}
                     onPress={() => {
@@ -158,8 +196,8 @@ class Quiz extends Component {
                         {this.state.questionNum === cards.length ? 'Done' : 'Next Question'}
                     </Text>
                 </TouchableOpacity>
+                </View>
 
-            </View>
         )
     }
 }
@@ -170,8 +208,8 @@ const styles = StyleSheet.create({
         padding: 20,
         backgroundColor: white,
         justifyContent: 'space-around',
-
     },
+
     row: {
         flexDirection: 'row',
         alignItems: 'center',
@@ -205,7 +243,14 @@ const styles = StyleSheet.create({
     nextQuestionBtn: {
         textAlign: 'center',
         color: purple,
-    }
+    },
+    center: {
+        flex: 1,
+        justifyContent: 'space-around',
+        alignItems: 'center',
+        marginLeft: 30,
+        marginRight: 30,
+    },
 })
 
 function mapStateToProps(state) {
