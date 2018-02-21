@@ -160,14 +160,15 @@ class Quiz extends Component {
                     }
                 })}
 
-
-                <TouchableOpacity onPress={() => {
+                <TouchableOpacity
+                    style={Platform.OS === 'ios' ? styles.iosSubmitBtn : styles.AndroidSubmitBtn}
+                    onPress={() => {
                         this.prepareQuestion(this.state.questionNum + 1),
-                        this.checkAnswer(this.state.questionNum === cards.length,
-                        )
-                }}>
+                            this.checkAnswer(this.state.questionNum === cards.length,
+                            )
+                    }}>
                     <Text
-                        style={styles.nextQuestionBtn}>
+                        style={styles.submitBtnText}>
                         {this.state.questionNum === cards.length ? 'Done' : 'Next Question'}
                     </Text>
                 </TouchableOpacity>
