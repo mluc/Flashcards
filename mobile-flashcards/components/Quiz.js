@@ -1,10 +1,9 @@
 import React, {Component} from "react";
-import {Platform, StyleSheet, Text, TouchableOpacity, View} from "react-native";
-import RadioButton from "react-native-radio-button";
+import {Platform, ScrollView, StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import {timeToString} from "../utils/helpers";
 import {connect} from "react-redux";
-import {gray, purple, white} from "../utils/colors";
-import {NavigationActions} from 'react-navigation'
+import {gray, green, purple, red, white} from "../utils/colors";
+import {NavigationActions} from "react-navigation";
 
 function AnswerBtn({onPress}) {
     return (
@@ -43,6 +42,25 @@ function BackToDeskBtn({onPress}) {
     )
 }
 
+function CorrectBtn({onPress}) {
+    return (
+        <TouchableOpacity
+            style={[Platform.OS === 'ios' ? styles.iosSubmitBtn : styles.AndroidSubmitBtn, styles.greenBackground]}
+            onPress={onPress}>
+            <Text style={styles.submitBtnText}>Correct</Text>
+        </TouchableOpacity>
+    )
+}
+
+function IncorrectBtn({onPress}) {
+    return (
+        <TouchableOpacity
+            style={[Platform.OS === 'ios' ? styles.iosSubmitBtn : styles.AndroidSubmitBtn, styles.redBackground]}
+            onPress={onPress}>
+            <Text style={styles.submitBtnText}>Incorrect</Text>
+        </TouchableOpacity>
+    )
+}
 class Quiz extends Component {
     static navigationOptions = () => {
 
@@ -53,15 +71,12 @@ class Quiz extends Component {
     state = {
         questionNum: -1,
         correctCount: 0,
-        pickedAnswer: -1,
-        checkedA: false,
-        checkedB: false,
         showQuestion: true,
         isDone: false,
-        currentCardIndex: -1
+        isCorrect:false
     }
     prepareQuestion = (num) => {
-        this.setState(() => ({checkedA: false, checkedB: false, questionNum: num}))
+        this.setState(() => ({isCorrect:false, questionNum: num}))
 
     }
 
@@ -79,25 +94,29 @@ class Quiz extends Component {
         this.props.navigation.dispatch(NavigationActions.back({key: 'Quiz'}))
         this.setState(() => ({
             correctCount: 0,
-            pickedAnswer: -1,
             showQuestion: true,
-            isDone: false,
-            currentCardIndex: -1
+            isDone: false
         }))
         this.prepareQuestion(this.props.navigation.state.params.cards.length > 0 ? 1 : 0)
     }
 
     checkAnswer = (isDone) => {
         this.props.navigation.state.params.cards.map((card, index) => {
-            if (index === this.state.currentCardIndex) {
-                if ((this.state.checkedA && card.answers.indexOf(card.correctAnswer) == 0) ||
-                    (this.state.checkedB && card.answers.indexOf(card.correctAnswer) == 1))
+            if (index === this.state.questionNum -1) {
+                if(this.state.isCorrect)
                     this.setState(() => ({correctCount: this.state.correctCount + 1}))
             }
         })
         if (isDone)
             this.setState(() => ({isDone: true}))
 
+    }
+    correctBtnClick = () => {
+        this.setState(() => ({isCorrect: true}))
+    }
+
+    incorrectBtnClick = () => {
+        this.setState(() => ({isCorrect: false}))
     }
 
     render() {
@@ -113,7 +132,7 @@ class Quiz extends Component {
                         <TakeQuizAgainBtn onPress={this.takeQuizAgainClick}/>
                     </View>
                     <View style={{justifyContent: 'center'}}>
-                        <BackToDeskBtn onPress={()=>this.props.navigation.dispatch(NavigationActions.back())}/>
+                        <BackToDeskBtn onPress={() => this.props.navigation.dispatch(NavigationActions.back())}/>
                     </View>
                 </View>
             )
@@ -131,51 +150,31 @@ class Quiz extends Component {
                         if (this.state.showQuestion) {
                             return (
 
-                                <View key={index}>
+                                <View style={styles.center} key={index}>
 
-                                    <Text style={{color: purple, fontSize: 25}}>
-                                        {card.question}
-                                    </Text>
-                                    {
-                                        card.answers.map((answer, i) => {
-                                            return (
-                                                <View style={styles.row} key={i}>
-                                                    <RadioButton
-                                                        isSelected={i == 0 ? this.state.checkedA : this.state.checkedB}
-                                                        onPress={() => this.setState({
-                                                            currentCardIndex: index,
-                                                            pickedAnswer: i,
-                                                            checkedA: i == 0
-                                                                ? !this.state.checkedA
-                                                                : this.state.checkedB,
-                                                            checkedB: i == 1
-                                                                ? !this.state.checkedB
-                                                                : this.state.checkedA
-                                                        })}
-                                                        innerColor={gray}
-                                                        outerColor={gray}
-                                                    />
-                                                    <Text style={{fontSize: 20, color: gray}}>
-                                                        {' '} {String.fromCharCode(97 + i)} {'- '}{answer}
-                                                    </Text>
-
-                                                </View>
-                                            )
-                                        })
-                                    }
-                                    <AnswerBtn onPress={this.answerClick}/>
+                                    <ScrollView>
+                                        <Text style={{color: gray, fontSize: 25}}>
+                                            {card.question}
+                                        </Text>
+                                    </ScrollView>
+                                    <View style={{justifyContent: 'center'}}>
+                                        <AnswerBtn onPress={this.answerClick}/>
+                                    </View>
 
                                 </View>
                             )
                         }
                         else {
                             return (
-                                <View key={index}>
-                                    <Text style={{color: gray, fontSize: 25}}>
-                                        {String.fromCharCode(97 + card.answers.indexOf(card.correctAnswer))}{'- '}{card.correctAnswer}
-                                    </Text>
-
-                                    <QuestionBtn onPress={this.questionClick}/>
+                                <View style={styles.center} key={index}>
+                                    <ScrollView>
+                                        <Text style={{color: gray, fontSize: 25}}>
+                                            {card.correctAnswer}
+                                        </Text>
+                                    </ScrollView>
+                                    <View style={{justifyContent: 'center'}}>
+                                        <QuestionBtn onPress={this.questionClick}/>
+                                    </View>
 
                                 </View>
                             )
@@ -183,20 +182,30 @@ class Quiz extends Component {
                     }
                 })}
 
-
-                <TouchableOpacity
-                    style={Platform.OS === 'ios' ? styles.iosSubmitBtn : styles.AndroidSubmitBtn}
-                    onPress={() => {
-                        this.prepareQuestion(this.state.questionNum + 1),
-                            this.checkAnswer(this.state.questionNum === cards.length,
-                            )
-                    }}>
-                    <Text
-                        style={styles.submitBtnText}>
-                        {this.state.questionNum === cards.length ? 'Done' : 'Next Question'}
-                    </Text>
-                </TouchableOpacity>
+                <View style={styles.center}>
+                    <View style={{justifyContent: 'center'}}>
+                        <CorrectBtn onPress={this.correctBtnClick}/>
+                    </View>
+                    <View style={{justifyContent: 'center'}}>
+                        <IncorrectBtn onPress={this.incorrectBtnClick}/>
+                    </View>
+                    <View style={{justifyContent: 'center'}}>
+                        <TouchableOpacity
+                            style={Platform.OS === 'ios' ? styles.iosSubmitBtn : styles.AndroidSubmitBtn}
+                            onPress={() => {
+                                this.prepareQuestion(this.state.questionNum + 1),
+                                    this.checkAnswer(this.state.questionNum === cards.length,
+                                    )
+                            }}>
+                            <Text
+                                style={styles.submitBtnText}>
+                                {this.state.questionNum === cards.length ? 'Done' : 'Next Question'}
+                            </Text>
+                        </TouchableOpacity>
+                    </View>
                 </View>
+
+            </View>
 
         )
     }
@@ -208,6 +217,7 @@ const styles = StyleSheet.create({
         padding: 20,
         backgroundColor: white,
         justifyContent: 'space-around',
+
     },
 
     row: {
@@ -233,6 +243,12 @@ const styles = StyleSheet.create({
         alignSelf: 'flex-end',
         justifyContent: 'center',
         alignItems: 'center',
+    },
+    redBackground:{
+        backgroundColor: red,
+    },
+    greenBackground:{
+        backgroundColor: green,
     },
     submitBtnText: {
         color: white,

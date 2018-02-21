@@ -15,18 +15,15 @@ function setDummyData () {
     const strTime = timeToString(timestamp)
 
     const card1 = {}
-    card1["question"] = "What is capital of Texas?"
-    card1["answers"] = ["Houston", "Austin"]
+    card1["question"] = "What is capital of TexaWhat is capital of TexasWhat is capital of TexasWhat is capital of TexasWhat is capital of TexasWhat is capital of TexasWhat is capital of TexasWhat is capital of TexasWhat is capital of TexasWhat is capital of TexasWhat is capital of TexasWhat is capital of TexasWhat is capital of TexasWhat is capital of TexasWhat is capital of TexasWhat is capital of TexasWhat is capital of Texass?"
     card1["correctAnswer"] = "Austin"
 
     const card2 = {}
     card2["question"] = "What is capital of VietNam?"
-    card2["answers"] = ["Ha Noi", "Ho Chi Minh"]
     card2["correctAnswer"] = "Ho Chi Minh"
 
     const card3 = {}
     card3["question"] = "What is capital of VietNam?"
-    card3["answers"] = ["Ha Noi", "Ho Chi Minh"]
     card3["correctAnswer"] = "Ho Chi Minh"
 
     dummyData[strTime] = {
