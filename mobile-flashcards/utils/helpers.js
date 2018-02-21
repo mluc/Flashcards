@@ -5,7 +5,7 @@ import { red, orange, blue, lightPurp, pink, white } from './colors'
 
 import { Notifications, Permissions } from 'expo'
 
-const NOTIFICATION_KEY = 'UdaciFitness:notifications'
+const NOTIFICATION_KEY = 'Project:notifications'
 
 export function getDailyReminderValue () {
     return {
@@ -174,8 +174,8 @@ export function clearLocalNotification () {
 
 function createNotification () {
     return {
-        title: 'Log your stats!',
-        body: "👋 don't forget to log your stats for today!",
+        title: 'From flash cards',
+        body: "👋 don't forget to take your quiz for today!",
         ios: {
             sound: true,
         },

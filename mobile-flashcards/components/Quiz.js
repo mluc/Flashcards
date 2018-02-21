@@ -76,7 +76,7 @@ class Quiz extends Component {
         isCorrect:false
     }
     prepareQuestion = (num) => {
-        this.setState(() => ({isCorrect:false, questionNum: num}))
+        this.setState(() => ({isCorrect:false, questionNum: num, showQuestion: true}))
 
     }
 
@@ -94,7 +94,6 @@ class Quiz extends Component {
         this.props.navigation.dispatch(NavigationActions.back({key: 'Quiz'}))
         this.setState(() => ({
             correctCount: 0,
-            showQuestion: true,
             isDone: false
         }))
         this.prepareQuestion(this.props.navigation.state.params.cards.length > 0 ? 1 : 0)
