@@ -1,22 +1,18 @@
-import React from 'react'
-import { View, Platform, StatusBar } from 'react-native'
-import AddEntry from './components/AddEntry'
-import { createStore } from 'redux'
-import { Provider } from 'react-redux'
-import reducer from './reducers'
-import History from './components/History'
-import Desks from './components/Desks'
-import AddDesk from './components/AddDesk'
-import { TabNavigator, StackNavigator } from 'react-navigation'
-import { purple, white } from './utils/colors'
-import { FontAwesome, Ionicons } from '@expo/vector-icons'
-import { Constants } from 'expo'
-import EntryDetail from './components/EntryDetail'
-import DeskDetail from './components/DeskDetail'
-import AddCard from './components/AddCard'
-import Quiz from './components/Quiz'
-import Live from './components/Live'
-import { setLocalNotification } from './utils/helpers'
+import React from "react";
+import {Platform, StatusBar, View} from "react-native";
+import {createStore} from "redux";
+import {Provider} from "react-redux";
+import reducer from "./reducers";
+import Desks from "./components/Desks";
+import AddDesk from "./components/AddDesk";
+import {StackNavigator, TabNavigator} from "react-navigation";
+import {purple, white} from "./utils/colors";
+import {Ionicons} from "@expo/vector-icons";
+import {Constants} from "expo";
+import DeskDetail from "./components/DeskDetail";
+import AddCard from "./components/AddCard";
+import Quiz from "./components/Quiz";
+import {setLocalNotification} from "./utils/helpers";
 
 function UdaciStatusBar ({backgroundColor, ...props}) {
     return (
@@ -40,28 +36,8 @@ const Tabs = TabNavigator({
             tabBarLabel: 'Add Desk',
             tabBarIcon: ({ tintColor }) => <Ionicons name='ios-bookmarks' size={30} color={tintColor} />
         },
-    },
-    History: {
-        screen: History,
-        navigationOptions: {
-            tabBarLabel: 'History',
-            tabBarIcon: ({ tintColor }) => <Ionicons name='ios-bookmarks' size={30} color={tintColor} />
-        },
-    },
-    AddEntry: {
-        screen: AddEntry,
-        navigationOptions: {
-            tabBarLabel: 'Add Entry',
-            tabBarIcon: ({ tintColor }) => <FontAwesome name='plus-square' size={30} color={tintColor} />
-        },
-    },
-    Live: {
-        screen: Live,
-        navigationOptions: {
-            tabBarLabel: 'Live',
-            tabBarIcon: ({ tintColor }) => <Ionicons name='ios-speedometer' size={30} color={tintColor} />
-        }
     }
+
 }, {
     navigationOptions: {
         header: null
@@ -86,15 +62,7 @@ const MainNavigator = StackNavigator({
     Home: {
         screen: Tabs,
     },
-    EntryDetail: {
-        screen: EntryDetail,
-        navigationOptions: {
-            headerTintColor: white,
-            headerStyle: {
-                backgroundColor: purple,
-            }
-        }
-    },
+
     DeskDetail: {
         screen: DeskDetail,
         navigationOptions: {

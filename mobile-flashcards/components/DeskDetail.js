@@ -1,12 +1,9 @@
-import React, {Component} from 'react'
-import {View, Text, StyleSheet, Platform, TouchableOpacity} from 'react-native'
-import {connect} from 'react-redux'
-import {timeToString, getDailyReminderValue} from '../utils/helpers'
-import MetricCard from './MetricCard'
-import {purple, white, gray} from '../utils/colors'
-import TextButton from './TextButton'
-import {addEntry} from '../actions'
-import {removeEntry} from '../utils/api'
+import React, {Component} from "react";
+import {Platform, StyleSheet, Text, TouchableOpacity, View} from "react-native";
+import {connect} from "react-redux";
+import {getDailyReminderValue, timeToString} from "../utils/helpers";
+import {gray, purple, white} from "../utils/colors";
+import {addEntry} from "../actions";
 
 function AddCardBtn({onPress}) {
     return (

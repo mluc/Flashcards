@@ -1,26 +1,12 @@
-import React, { Component } from 'react'
-import { View, TouchableOpacity, Text, StyleSheet, Platform, TextInput, KeyboardAvoidingView } from 'react-native'
-import RadioButton from 'react-native-radio-button'
+import React, {Component} from "react";
+import {Platform, StyleSheet, Text, TextInput, TouchableOpacity, View} from "react-native";
+import RadioButton from "react-native-radio-button";
 
-import {
-    getMetricMetaInfo,
-    timeToString,
-    getDailyReminderValue,
-    clearLocalNotification,
-    setLocalNotification
-} from '../utils/helpers'
-import UdaciSlider from './UdaciSlider'
-import UdaciSteppers from './UdaciSteppers'
-import DateHeader from './DateHeader'
-import { Ionicons } from '@expo/vector-icons'
-import TextButton from './TextButton'
-import { submitEntry, removeEntry } from '../utils/api'
-import { connect } from 'react-redux'
-import { addEntry } from '../actions'
-import { purple, white, gray } from '../utils/colors'
-import { NavigationActions } from 'react-navigation'
+import {timeToString} from "../utils/helpers";
+import {connect} from "react-redux";
+import {gray, purple, white} from "../utils/colors";
 
-function SubmitBtn ({ onPress }) {
+function SubmitBtn({onPress}) {
     return (
         <TouchableOpacity
             style={Platform.OS === 'ios' ? styles.iosSubmitBtn : styles.AndroidSubmitBtn}
@@ -43,7 +29,9 @@ class AddCard extends Component {
         answerB: null,
         checkedB: false
     }
-    submit = () => {}
+    submit = () => {
+    }
+
     render() {
         return (
             <View style={styles.center}>
@@ -64,7 +52,7 @@ class AddCard extends Component {
                     </Text>
                     <RadioButton
                         isSelected={this.state.checkedA}
-                        onPress={()=>this.setState({checkedA: !this.state.checkedA, checkedB: !this.state.checkedB})}
+                        onPress={() => this.setState({checkedA: !this.state.checkedA, checkedB: !this.state.checkedB})}
                         innerColor={purple}
                         outerColor={purple}
                     />
@@ -81,7 +69,7 @@ class AddCard extends Component {
                     </Text>
                     <RadioButton
                         isSelected={this.state.checkedB}
-                        onPress={()=>this.setState({checkedB: !this.state.checkedB, checkedA: !this.state.checkedA})}
+                        onPress={() => this.setState({checkedB: !this.state.checkedB, checkedA: !this.state.checkedA})}
                         innerColor={purple}
                         outerColor={purple}
                     />
@@ -92,7 +80,7 @@ class AddCard extends Component {
                     onChangeText={(text) => this.setState({answerB: text})}
                     value={this.state.answerB}
                 />
-                <SubmitBtn onPress={this.submit} />
+                <SubmitBtn onPress={this.submit}/>
             </View>
         )
     }
@@ -148,7 +136,7 @@ const styles = StyleSheet.create({
     },
 })
 
-function mapStateToProps (state) {
+function mapStateToProps(state) {
     const key = timeToString()
 
     return {

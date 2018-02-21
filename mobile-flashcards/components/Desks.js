@@ -1,13 +1,10 @@
-import React, {Component} from 'react'
-import {View, Text, StyleSheet, Platform, TouchableOpacity} from 'react-native'
-import {connect} from 'react-redux'
-import {receiveEntries, addEntry} from '../actions'
-import {timeToString, getDailyReminderValue} from '../utils/helpers'
-import {fetchCalendarResults} from '../utils/api'
-import UdaciFitnessCalendar from 'udacifitness-calendar'
-import {purple, white, gray} from '../utils/colors'
-import DateHeader from './DateHeader'
-import {AppLoading} from 'expo'
+import React, {Component} from "react";
+import {Platform, StyleSheet, Text, TouchableOpacity, View} from "react-native";
+import {connect} from "react-redux";
+import {receiveEntries} from "../actions";
+import {fetchCalendarResults} from "../utils/api";
+import {gray, purple, white} from "../utils/colors";
+import {AppLoading} from "expo";
 
 class Desks extends Component {
     state = {

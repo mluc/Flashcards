@@ -1,23 +1,9 @@
-import React, {Component} from 'react'
-import {View, TouchableOpacity, Text, StyleSheet, Platform} from 'react-native'
-import RadioButton from 'react-native-radio-button'
-import {
-    getMetricMetaInfo,
-    timeToString,
-    getDailyReminderValue,
-    clearLocalNotification,
-    setLocalNotification
-} from '../utils/helpers'
-import UdaciSlider from './UdaciSlider'
-import UdaciSteppers from './UdaciSteppers'
-import DateHeader from './DateHeader'
-import {Ionicons} from '@expo/vector-icons'
-import TextButton from './TextButton'
-import {submitEntry, removeEntry} from '../utils/api'
-import {connect} from 'react-redux'
-import {addEntry} from '../actions'
-import {purple, white, gray} from '../utils/colors'
-import {NavigationActions} from 'react-navigation'
+import React, {Component} from "react";
+import {Platform, StyleSheet, Text, TouchableOpacity, View} from "react-native";
+import RadioButton from "react-native-radio-button";
+import {timeToString} from "../utils/helpers";
+import {connect} from "react-redux";
+import {gray, purple, white} from "../utils/colors";
 
 function AnswerBtn({onPress}) {
     return (
