@@ -3,6 +3,9 @@ import {Platform, StyleSheet, Text, TextInput, TouchableOpacity, View} from "rea
 import {timeToString} from "../utils/helpers";
 import {connect} from "react-redux";
 import {gray, lightBlue, white} from "../utils/colors";
+import { NavigationActions } from 'react-navigation'
+import { addEntry } from '../actions'
+import { submitEntry, removeEntry } from '../utils/api'
 
 function SubmitBtn ({ onPress }) {
     return (
@@ -16,11 +19,22 @@ function SubmitBtn ({ onPress }) {
 class AddDesk extends Component {
 
     submit = () => {
+        const key = this.state.newTitle
+        const entry = {"cards":[]}
 
+        this.props.dispatch(addEntry({
+            [key]:entry
+        }))
+
+        this.props.navigation.navigate(
+            'DeskDetail',
+            {entryId: this.state.newTitle, test: entry }
+        )
+        submitEntry({ key, entry })
     }
 
     state = {
-        newTitle:null
+        newTitle:timeToString((new Date()).setDate((new Date()).getDate() - 3))
     }
     render() {
         return (

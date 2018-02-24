@@ -4,6 +4,8 @@ import {Platform, StyleSheet, Text, TextInput, TouchableOpacity, View} from "rea
 import {timeToString} from "../utils/helpers";
 import {connect} from "react-redux";
 import {gray, lightBlue, white} from "../utils/colors";
+import {addCard} from '../actions'
+import {submitEntry, removeEntry} from '../utils/api'
 
 function SubmitBtn({onPress}) {
     return (
@@ -22,16 +24,32 @@ class AddCard extends Component {
         }
     }
     state = {
-        question: null,
-        answer: null,
+        question: "question1",
+        answer: "answer1",
     }
-    submit = () => {
+    submit = (entryId, values) => {
+        const card = {}
+        card["question"] = this.state.question
+        card["correctAnswer"] = this.state.answer
+
+        //this.props.dispatch(addCard({
+        //    entryId, card
+        //}))
+
+
+        //submitEntry({ entryId, values })
     }
 
     render() {
+        const {entryId, values} = this.props.navigation.state.params
+
         return (
             <View style={styles.center}>
 
+                <Text>
+                    {JSON.stringify(entryId)}
+                    {JSON.stringify(values)}
+                </Text>
                 <Text style={{color: lightBlue, fontSize: 25}}>
                     Question:
                 </Text>
@@ -55,7 +73,7 @@ class AddCard extends Component {
                     value={this.state.answer}
                 />
 
-                <SubmitBtn onPress={this.submit}/>
+                <SubmitBtn onPress={this.submit(entryId, values)}/>
             </View>
         )
     }

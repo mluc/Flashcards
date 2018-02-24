@@ -5,6 +5,7 @@ import {getDailyReminderValue, timeToString} from "../utils/helpers";
 import {gray, lightBlue, white} from "../utils/colors";
 import {addEntry} from "../actions";
 
+
 function AddCardBtn({onPress}) {
     return (
         <TouchableOpacity
@@ -33,6 +34,7 @@ class DeskDetail extends Component {
             title: entryId
         }
     }
+
     /*
      reset = () => {
      const { remove, goBack, entryId } = this.props
@@ -58,14 +60,16 @@ class DeskDetail extends Component {
                     </Text>
                     <Text style={{fontSize: 16, color: gray}}>
                         {values.cards.length} cards
-
+                    </Text>
+                    <Text>
+                       {JSON.stringify(this.props)}
                     </Text>
 
                 </View>
                 <AddCardBtn onPress={()=>
                     this.props.navigation.navigate(
                         'AddCard',
-                        {entryId: 'check'})
+                        {entryId: entryId, values: values})
                 }/>
                 <StartQuizBtn onPress={()=>
                     this.props.navigation.navigate(

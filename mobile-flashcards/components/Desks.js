@@ -40,10 +40,13 @@ class Desks extends Component {
                             <View style={styles.item} key={key}>
                                 <Text style={{color: lightBlue, fontSize: 25}}>
                                     {key}
+
                                 </Text>
                                 <Text style={{fontSize: 16, color: gray}}>
-                                    {entries[key].cards.length} cards
+
+                                   {entries[key].cards.length} cards
                                 </Text>
+
                             </View>
                         </TouchableOpacity>
                     )
