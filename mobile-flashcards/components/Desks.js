@@ -3,7 +3,7 @@ import {Platform, StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import {connect} from "react-redux";
 import {receiveEntries} from "../actions";
 import {fetchCalendarResults} from "../utils/api";
-import {gray, purple, white} from "../utils/colors";
+import {gray, lightBlue, white} from "../utils/colors";
 import {AppLoading} from "expo";
 
 class Desks extends Component {
@@ -38,7 +38,7 @@ class Desks extends Component {
                             key={key}
                         >
                             <View style={styles.item} key={key}>
-                                <Text style={{color: purple, fontSize: 25}}>
+                                <Text style={{color: lightBlue, fontSize: 25}}>
                                     {key}
                                 </Text>
                                 <Text style={{fontSize: 16, color: gray}}>

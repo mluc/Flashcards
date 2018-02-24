@@ -2,7 +2,7 @@ import React, {Component} from "react";
 import {Platform, StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import {connect} from "react-redux";
 import {getDailyReminderValue, timeToString} from "../utils/helpers";
-import {gray, purple, white} from "../utils/colors";
+import {gray, lightBlue, white} from "../utils/colors";
 import {addEntry} from "../actions";
 
 function AddCardBtn({onPress}) {
@@ -53,7 +53,7 @@ class DeskDetail extends Component {
         return (
             <View style={styles.container}>
                 <View>
-                    <Text style={{color: purple, fontSize: 25}}>
+                    <Text style={{color: lightBlue, fontSize: 25}}>
                         {entryId}
                     </Text>
                     <Text style={{fontSize: 16, color: gray}}>
@@ -90,7 +90,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     iosBtn: {
-        backgroundColor: purple,
+        backgroundColor: lightBlue,
         padding: 10,
         borderRadius: 7,
         height: 45,
@@ -98,7 +98,7 @@ const styles = StyleSheet.create({
         marginRight: 40,
     },
     AndroidBtn: {
-        backgroundColor: purple,
+        backgroundColor: lightBlue,
         padding: 10,
         paddingLeft: 30,
         paddingRight: 30,

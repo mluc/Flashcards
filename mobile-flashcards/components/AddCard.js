@@ -3,7 +3,7 @@ import {Platform, StyleSheet, Text, TextInput, TouchableOpacity, View} from "rea
 
 import {timeToString} from "../utils/helpers";
 import {connect} from "react-redux";
-import {gray, purple, white} from "../utils/colors";
+import {gray, lightBlue, white} from "../utils/colors";
 
 function SubmitBtn({onPress}) {
     return (
@@ -32,7 +32,7 @@ class AddCard extends Component {
         return (
             <View style={styles.center}>
 
-                <Text style={{color: purple, fontSize: 25}}>
+                <Text style={{color: lightBlue, fontSize: 25}}>
                     Question:
                 </Text>
 
@@ -44,7 +44,7 @@ class AddCard extends Component {
                     onChangeText={(text) => this.setState({question: text})}
                     value={this.state.question}
                 />
-                <Text style={{color: purple, fontSize: 25}}>
+                <Text style={{color: lightBlue, fontSize: 25}}>
                     Answer:
                 </Text>
                 <TextInput
@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent',
     },
     iosSubmitBtn: {
-        backgroundColor: purple,
+        backgroundColor: lightBlue,
         padding: 10,
         borderRadius: 7,
         height: 45,
@@ -87,7 +87,7 @@ const styles = StyleSheet.create({
         marginRight: 40,
     },
     AndroidSubmitBtn: {
-        backgroundColor: purple,
+        backgroundColor: lightBlue,
         padding: 10,
         paddingLeft: 30,
         paddingRight: 30,

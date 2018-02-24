@@ -4,7 +4,7 @@ import {timeToString,
     clearLocalNotification,
     setLocalNotification} from "../utils/helpers";
 import {connect} from "react-redux";
-import {gray, green, purple, red, white} from "../utils/colors";
+import {gray, green, lightBlue, red, white} from "../utils/colors";
 import {NavigationActions} from "react-navigation";
 
 function AnswerBtn({onPress}) {
@@ -128,7 +128,7 @@ class Quiz extends Component {
         if (this.state.isDone) {
             return (
                 <View style={styles.center}>
-                    <Text style={{color: purple, fontSize: 25}}>
+                    <Text style={{color: lightBlue, fontSize: 25}}>
                         {this.state.correctCount} / {cards.length} correct!
                     </Text>
                     <View style={{justifyContent: 'center'}}>
@@ -143,7 +143,7 @@ class Quiz extends Component {
 
         return (
             <View style={styles.container}>
-                <Text style={{color: purple, fontSize: 25}}>
+                <Text style={{color: lightBlue, fontSize: 25}}>
                     {this.state.questionNum} / {cards.length}
                 </Text>
                 {cards.map((card, index) => {
@@ -229,7 +229,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent',
     },
     iosSubmitBtn: {
-        backgroundColor: purple,
+        backgroundColor: lightBlue,
         padding: 10,
         borderRadius: 7,
         height: 45,
@@ -237,7 +237,7 @@ const styles = StyleSheet.create({
         marginRight: 40,
     },
     AndroidSubmitBtn: {
-        backgroundColor: purple,
+        backgroundColor: lightBlue,
         padding: 10,
         paddingLeft: 30,
         paddingRight: 30,
@@ -261,7 +261,7 @@ const styles = StyleSheet.create({
 
     nextQuestionBtn: {
         textAlign: 'center',
-        color: purple,
+        color: lightBlue,
     },
     center: {
         flex: 1,

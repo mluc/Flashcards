@@ -2,7 +2,7 @@ import React, {Component} from "react";
 import {Platform, StyleSheet, Text, TextInput, TouchableOpacity, View} from "react-native";
 import {timeToString} from "../utils/helpers";
 import {connect} from "react-redux";
-import {gray, purple, white} from "../utils/colors";
+import {gray, lightBlue, white} from "../utils/colors";
 
 function SubmitBtn ({ onPress }) {
     return (
@@ -26,7 +26,7 @@ class AddDesk extends Component {
         return (
             <View style={styles.container}>
                 <View>
-                    <Text style={{color: purple, fontSize: 25}}>
+                    <Text style={{color: lightBlue, fontSize: 25}}>
                         New desk title:
                     </Text>
                     <TextInput
@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     iosSubmitBtn: {
-        backgroundColor: purple,
+        backgroundColor: lightBlue,
         padding: 10,
         borderRadius: 7,
         height: 45,
@@ -63,7 +63,7 @@ const styles = StyleSheet.create({
         marginRight: 40,
     },
     AndroidSubmitBtn: {
-        backgroundColor: purple,
+        backgroundColor: lightBlue,
         padding: 10,
         paddingLeft: 30,
         paddingRight: 30,

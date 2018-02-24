@@ -6,7 +6,7 @@ import reducer from "./reducers";
 import Desks from "./components/Desks";
 import AddDesk from "./components/AddDesk";
 import {StackNavigator, TabNavigator} from "react-navigation";
-import {purple, white} from "./utils/colors";
+import {lightBlue, white} from "./utils/colors";
 import {Ionicons} from "@expo/vector-icons";
 import {Constants} from "expo";
 import DeskDetail from "./components/DeskDetail";
@@ -43,10 +43,10 @@ const Tabs = TabNavigator({
         header: null
     },
     tabBarOptions: {
-        activeTintColor: Platform.OS === 'ios' ? purple : white,
+        activeTintColor: Platform.OS === 'ios' ? lightBlue : white,
         style: {
             height: 56,
-            backgroundColor: Platform.OS === 'ios' ? white : purple,
+            backgroundColor: Platform.OS === 'ios' ? white : lightBlue,
             shadowColor: 'rgba(0, 0, 0, 0.24)',
             shadowOffset: {
                 width: 0,
@@ -68,7 +68,7 @@ const MainNavigator = StackNavigator({
         navigationOptions: {
             headerTintColor: white,
             headerStyle: {
-                backgroundColor: purple,
+                backgroundColor: lightBlue,
             }
         }
     },
@@ -77,7 +77,7 @@ const MainNavigator = StackNavigator({
         navigationOptions: {
             headerTintColor: white,
             headerStyle: {
-                backgroundColor: purple,
+                backgroundColor: lightBlue,
             }
         }
     },
@@ -86,7 +86,7 @@ const MainNavigator = StackNavigator({
         navigationOptions: {
             headerTintColor: white,
             headerStyle: {
-                backgroundColor: purple,
+                backgroundColor: lightBlue,
             }
         }
     }
@@ -100,7 +100,7 @@ export default class App extends React.Component {
         return (
             <Provider store={createStore(reducer)}>
               <View style={{flex: 1}}>
-                <UdaciStatusBar backgroundColor={purple} barStyle="light-content" />
+                <UdaciStatusBar backgroundColor={lightBlue} barStyle="light-content" />
                 <MainNavigator />
               </View>
             </Provider>
