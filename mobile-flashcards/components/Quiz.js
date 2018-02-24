@@ -1,6 +1,8 @@
 import React, {Component} from "react";
 import {Platform, ScrollView, StyleSheet, Text, TouchableOpacity, View} from "react-native";
-import {timeToString} from "../utils/helpers";
+import {timeToString,
+    clearLocalNotification,
+    setLocalNotification} from "../utils/helpers";
 import {connect} from "react-redux";
 import {gray, green, purple, red, white} from "../utils/colors";
 import {NavigationActions} from "react-navigation";
@@ -106,8 +108,10 @@ class Quiz extends Component {
                     this.setState(() => ({correctCount: this.state.correctCount + 1}))
             }
         })
-        if (isDone)
+        if (isDone){
             this.setState(() => ({isDone: true}))
+            clearLocalNotification().then(setLocalNotification)
+        }
 
     }
     correctBtnClick = () => {
