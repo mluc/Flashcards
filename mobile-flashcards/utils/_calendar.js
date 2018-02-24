@@ -1,5 +1,5 @@
-import { AsyncStorage } from 'react-native'
-import { getMetricMetaInfo, timeToString } from './helpers'
+import {AsyncStorage} from "react-native";
+import {timeToString} from "./helpers";
 
 export const CALENDAR_STORAGE_KEY = 'Project:desks'
 
@@ -8,7 +8,7 @@ function getRandomNumber (max) {
 }
 
 function setDummyData () {
-    const { run, bike, swim, sleep, eat } = getMetricMetaInfo()
+
 
     let dummyData = {}
     const timestamp = Date.now()
