@@ -83,6 +83,27 @@ export function SubmitBtn({onPress}) {
     )
 }
 
+
+export function AddCardBtn({onPress}) {
+    return (
+        <TouchableOpacity
+            style={[Platform.OS === 'ios' ? styles.iosSubmitBtn : styles.AndroidSubmitBtn]}
+            onPress={onPress}>
+            <Text style={styles.submitBtnText}>Add Card</Text>
+        </TouchableOpacity>
+    )
+}
+
+export function StartQuizBtn({onPress}) {
+    return (
+        <TouchableOpacity
+            style={[Platform.OS === 'ios' ? styles.iosSubmitBtn : styles.AndroidSubmitBtn]}
+            onPress={onPress}>
+            <Text style={styles.submitBtnText}>Start Quiz</Text>
+        </TouchableOpacity>
+    )
+}
+
 const styles = StyleSheet.create({
     iosSubmitBtn: {
         backgroundColor: lightBlue,
@@ -113,9 +134,5 @@ const styles = StyleSheet.create({
         color: white,
         fontSize: 22,
         textAlign: 'center',
-    },
-    nextQuestionBtn: {
-        textAlign: 'center',
-        color: lightBlue,
-    },
+    }
 })

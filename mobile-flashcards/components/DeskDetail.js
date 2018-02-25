@@ -4,27 +4,8 @@ import {connect} from "react-redux";
 import {getDailyReminderValue, timeToString} from "../utils/helpers";
 import {gray, lightBlue, white} from "../utils/colors";
 import {addEntry} from "../actions";
+import {AddCardBtn,StartQuizBtn } from './QuizButtons'
 
-
-function AddCardBtn({onPress}) {
-    return (
-        <TouchableOpacity
-            style={Platform.OS === 'ios' ? styles.iosBtn : styles.AndroidBtn}
-            onPress={onPress}>
-            <Text style={styles.btnText}>Add Card</Text>
-        </TouchableOpacity>
-    )
-}
-
-function StartQuizBtn({onPress}) {
-    return (
-        <TouchableOpacity
-            style={Platform.OS === 'ios' ? styles.iosBtn : styles.AndroidBtn}
-            onPress={onPress}>
-            <Text style={styles.btnText}>Start Quiz</Text>
-        </TouchableOpacity>
-    )
-}
 
 class DeskDetail extends Component {
     static navigationOptions = ({navigation}) => {
@@ -35,20 +16,6 @@ class DeskDetail extends Component {
         }
     }
 
-    /*
-     reset = () => {
-     const { remove, goBack, entryId } = this.props
-
-     remove()
-     goBack()
-     removeEntry(entryId)
-     }
-     */
-    /*
-    shouldComponentUpdate(nextProps) {
-        return nextProps.metrics !== null && !nextProps.metrics.today
-    }
-*/
     render() {
         const {entryId, cards} = this.props
 
@@ -63,16 +30,22 @@ class DeskDetail extends Component {
                     </Text>
 
                 </View>
-                <AddCardBtn onPress={()=>
-                    this.props.navigation.navigate(
-                        'AddCard',
-                        {entryId: entryId, cards: cards})
-                }/>
-                <StartQuizBtn onPress={()=>
-                    this.props.navigation.navigate(
-                        'Quiz',
-                        {cards: cards})
-                }/>
+                <View style={{justifyContent: 'center'}}>
+                    <AddCardBtn onPress={() =>
+                        this.props.navigation.navigate(
+                            'AddCard',
+                            {entryId: entryId, cards: cards})
+                    }/>
+                </View>
+                <View style={{justifyContent: 'center'}}>
+                    <StartQuizBtn onPress={() =>
+                        this.props.navigation.navigate(
+                            'Quiz',
+                            {cards: cards})
+                    }/>
+                </View>
+
+
 
             </View>
         )
@@ -87,35 +60,12 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'space-around'
     },
-    row: {
-        alignItems: 'center',
-    },
-    iosBtn: {
-        backgroundColor: lightBlue,
-        padding: 10,
-        borderRadius: 7,
-        height: 45,
-        marginLeft: 40,
-        marginRight: 40,
-    },
-    AndroidBtn: {
-        backgroundColor: lightBlue,
-        padding: 10,
-        paddingLeft: 30,
-        paddingRight: 30,
-        height: 45,
-        borderRadius: 2,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    btnText: {
-        color: white,
-        fontSize: 22,
-        textAlign: 'center',
-    },
     center: {
-        flex: 2,
-        justifyContent: 'center',
+        flex: 1,
+        justifyContent: 'space-around',
+        alignItems: 'center',
+        marginLeft: 30,
+        marginRight: 30,
     },
 })
 
