@@ -1,13 +1,11 @@
-import React from 'react'
-import { View, StyleSheet, AsyncStorage } from 'react-native'
-import { FontAwesome, MaterialIcons, MaterialCommunityIcons } from '@expo/vector-icons'
-import { red, orange, blue, lightPurp, pink, white } from './colors'
+import React from "react";
+import {AsyncStorage, StyleSheet} from "react-native";
 
-import { Notifications, Permissions } from 'expo'
+import {Notifications, Permissions} from "expo";
 
 const NOTIFICATION_KEY = 'Project:notifications'
 
-export function getDailyReminderValue () {
+export function getDailyReminderValue() {
     return {
         today: "👋 Don't forget to log your data today!"
     }
@@ -25,7 +23,7 @@ const styles = StyleSheet.create({
     },
 })
 
-export function clearLocalNotification () {
+export function clearLocalNotification() {
     return AsyncStorage.removeItem(NOTIFICATION_KEY)
         .then(Notifications.cancelAllScheduledNotificationsAsync)
 }
@@ -34,7 +32,7 @@ export function getRandomId() {
     return Math.random().toString(36).substr(2, 10);
 }
 
-function createNotification () {
+function createNotification() {
     return {
         title: 'From flash cards',
         body: "👋 don't forget to take your quiz for today!",
@@ -50,13 +48,13 @@ function createNotification () {
     }
 }
 
-export function setLocalNotification () {
+export function setLocalNotification() {
     AsyncStorage.getItem(NOTIFICATION_KEY)
         .then(JSON.parse)
         .then((data) => {
             if (data === null) {
                 Permissions.askAsync(Permissions.NOTIFICATIONS)
-                    .then(({ status }) => {
+                    .then(({status}) => {
                         if (status === 'granted') {
                             Notifications.cancelAllScheduledNotificationsAsync()
 

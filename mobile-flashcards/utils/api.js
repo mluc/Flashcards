@@ -1,5 +1,5 @@
-import {AsyncStorage} from 'react-native'
-import {formatDesksResults, CALENDAR_STORAGE_KEY} from './_desks'
+import {AsyncStorage} from "react-native";
+import {CALENDAR_STORAGE_KEY, formatDesksResults} from "./_desks";
 
 
 export function fetchDesksResults() {

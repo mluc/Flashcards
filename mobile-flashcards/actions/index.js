@@ -1,7 +1,3 @@
-export const RECEIVE_ENTRIES = 'RECEIVE_ENTRIES'
-export const ADD_ENTRY = 'ADD_ENTRY'
-export const ADD_CARD = 'ADD_CARD'
-
 export const GET_DESKS = 'GET_DESKS'
 export const GET_DESK = 'GET_DESK'
 export const SAVE_DESK_TITLE = 'SAVE_DESK_TITLE'
@@ -24,6 +20,7 @@ export function getDesk({id}) {
 export function saveDeckTitle({title}) {
     return {
         type: SAVE_DESK_TITLE,
+
         title
     }
 }
