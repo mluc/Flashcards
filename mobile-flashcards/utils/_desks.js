@@ -11,12 +11,12 @@ function setDummyData () {
     let dummyData = {}
 
     const card1 = {}
-    card1["question"] = "What is capital of Texas? What is capital of Texas?"
+    card1["question"] = "What is the capital of Texas?"
     card1["correctAnswer"] = "Austin"
 
     const card2 = {}
-    card2["question"] = "What is capital of VietNam?"
-    card2["correctAnswer"] = "Ho Chi Minh"
+    card2["question"] = "What is the capital of VietNam?"
+    card2["correctAnswer"] = "Ha Noi"
 
     const cards = {}
     cards[getRandomId()] = card1
