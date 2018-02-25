@@ -25,7 +25,6 @@
     "react-native": "0.52.0",
     "react-navigation": "^1.0.3",
     "react-redux": "^5.0.7",
-    "redux": "^3.7.2",
-    "udacifitness-calendar": "^11.0.0"
+    "redux": "^3.7.2"
   }
 }

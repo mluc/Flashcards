@@ -14,7 +14,7 @@ import AddCard from "./components/AddCard";
 import Quiz from "./components/Quiz";
 import {setLocalNotification} from "./utils/helpers";
 
-function UdaciStatusBar ({backgroundColor, ...props}) {
+function TopStatusBar ({backgroundColor, ...props}) {
     return (
         <View style={{ backgroundColor, height: Constants.statusBarHeight }}>
           <StatusBar translucent backgroundColor={backgroundColor} {...props} />
@@ -100,7 +100,7 @@ export default class App extends React.Component {
         return (
             <Provider store={createStore(reducer)}>
               <View style={{flex: 1}}>
-                <UdaciStatusBar backgroundColor={lightBlue} barStyle="light-content" />
+                <TopStatusBar backgroundColor={lightBlue} barStyle="light-content" />
                 <MainNavigator />
               </View>
             </Provider>
