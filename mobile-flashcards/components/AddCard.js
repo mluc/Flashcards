@@ -1,12 +1,9 @@
 import React, {Component} from "react";
 import {Platform, StyleSheet, Text, TextInput, TouchableOpacity, View} from "react-native";
-
-import {timeToString, getRandomId} from "../utils/helpers";
 import {connect} from "react-redux";
 import {gray, lightBlue, white} from "../utils/colors";
-import {addCard} from '../actions'
-import {submitEntry, removeEntry} from '../utils/api'
-import { NavigationActions } from 'react-navigation'
+import {addCard} from "../actions";
+import {NavigationActions} from "react-navigation";
 
 function SubmitBtn({onPress}) {
     return (
@@ -28,7 +25,7 @@ class AddCard extends Component {
         question: "question1",
         answer: "answer1",
     }
-    submit = (entryId) => () =>{
+    submit = (entryId) => () => {
 
         if (!this.state.question || !this.state.answer) {
             return
@@ -40,7 +37,7 @@ class AddCard extends Component {
         }
 
         this.props.dispatch(addCard({
-            card:card, entryId: entryId
+            card: card, entryId: entryId
         }))
 
         this.props.navigation.dispatch(NavigationActions.back())
@@ -52,15 +49,9 @@ class AddCard extends Component {
         return (
             <View style={styles.center}>
 
-                <Text>
-                    {JSON.stringify(entryId)}
-                    {JSON.stringify(cards)}
-                </Text>
                 <Text style={{color: lightBlue, fontSize: 25}}>
                     Question:
                 </Text>
-
-
                 <TextInput
                     style={styles.textInput}
                     multiline={true}
@@ -135,14 +126,5 @@ const styles = StyleSheet.create({
     },
 })
 
-function mapStateToProps(state) {
-    const key = timeToString()
-
-    return {
-        alreadyLogged: state[key] && typeof state[key].today === 'undefined'
-    }
-}
-
 export default connect(
-    mapStateToProps
 )(AddCard)

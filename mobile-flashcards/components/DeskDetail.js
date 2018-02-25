@@ -61,9 +61,6 @@ class DeskDetail extends Component {
                     <Text style={{fontSize: 16, color: gray}}>
                         {Object.keys(cards).length} cards
                     </Text>
-                    <Text>
-                       {JSON.stringify(this.props.cards)}
-                    </Text>
 
                 </View>
                 <AddCardBtn onPress={()=>
@@ -131,20 +128,7 @@ function mapStateToProps(state, {navigation}) {
     }
 }
 
-function mapDispatchToProps(dispatch, {navigation}) {
-    const {entryId} = navigation.state.params
-
-    return {
-        remove: () => dispatch(addEntry({
-            [entryId]: timeToString() === entryId
-                ? getDailyReminderValue()
-                : null
-        })),
-        goBack: () => navigation.goBack(),
-    }
-}
 
 export default connect(
-    mapStateToProps,
-    mapDispatchToProps,
+    mapStateToProps
 )(DeskDetail)

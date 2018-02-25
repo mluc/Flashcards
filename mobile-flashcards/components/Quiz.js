@@ -182,14 +182,5 @@ const styles = StyleSheet.create({
     },
 })
 
-function mapStateToProps(state) {
-    const key = timeToString()
 
-    return {
-        alreadyLogged: state[key] && typeof state[key].today === 'undefined'
-    }
-}
-
-export default connect(
-    mapStateToProps
-)(Quiz)
+export default connect()(Quiz)

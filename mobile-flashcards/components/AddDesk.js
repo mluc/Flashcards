@@ -110,14 +110,4 @@ const styles = StyleSheet.create({
     },
 })
 
-function mapStateToProps (state) {
-    const key = timeToString()
-
-    return {
-        alreadyLogged: state[key] && typeof state[key].today === 'undefined'
-    }
-}
-
-export default connect(
-    mapStateToProps
-)(AddDesk)
+export default connect()(AddDesk)
