@@ -39,12 +39,12 @@ class Desks extends Component {
                         >
                             <View style={styles.item} key={key}>
                                 <Text style={{color: lightBlue, fontSize: 25}}>
-                                    {key}
+                                    {entries[key].title}
 
                                 </Text>
                                 <Text style={{fontSize: 16, color: gray}}>
 
-                                    {Object.keys(entries[key]).length} cards
+                                    {entries[key].questions.length} cards
                                 </Text>
                             </View>
                         </TouchableOpacity>

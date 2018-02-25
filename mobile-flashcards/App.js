@@ -30,6 +30,7 @@ const Tabs = TabNavigator({
             tabBarIcon: ({ tintColor }) => <Ionicons name='ios-bookmarks' size={30} color={tintColor} />
         },
     },
+
     AddDesk: {
         screen: AddDesk,
         navigationOptions: {
@@ -62,7 +63,7 @@ const MainNavigator = StackNavigator({
     Home: {
         screen: Tabs,
     },
-
+/*
     DeskDetail: {
         screen: DeskDetail,
         navigationOptions: {
@@ -72,6 +73,7 @@ const MainNavigator = StackNavigator({
             }
         }
     },
+
     AddCard: {
         screen: AddCard,
         navigationOptions: {
@@ -89,7 +91,7 @@ const MainNavigator = StackNavigator({
                 backgroundColor: lightBlue,
             }
         }
-    }
+    }*/
 })
 
 export default class App extends React.Component {

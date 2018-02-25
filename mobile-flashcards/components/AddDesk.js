@@ -3,7 +3,7 @@ import {StyleSheet, Text, TextInput, View} from "react-native";
 
 import {connect} from "react-redux";
 import {gray, lightBlue, white} from "../utils/colors";
-import {addEntry} from "../actions";
+import {addEntry, saveDeckTitle} from "../actions";
 import {submitEntry} from "../utils/api";
 import {SubmitBtn} from "./Buttons";
 
@@ -17,15 +17,16 @@ class AddDesk extends Component {
         const key = this.state.newTitle
         const entry = {}
 
-        this.props.dispatch(addEntry({
-            [key]: entry
+        this.props.dispatch(saveDeckTitle({
+            title: this.state.newTitle
         }))
 
+        /*
         this.props.navigation.navigate(
             'DeskDetail',
             {entryId: this.state.newTitle, test: entry}
-        )
-        submitEntry({key, entry})
+        )*/
+        //submitEntry({key, entry})
     }
 
     state = {
