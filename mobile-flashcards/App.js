@@ -73,7 +73,7 @@ const MainNavigator = StackNavigator({
             }
         }
     },
-/*
+
     AddCard: {
         screen: AddCard,
         navigationOptions: {
@@ -91,7 +91,7 @@ const MainNavigator = StackNavigator({
                 backgroundColor: lightBlue,
             }
         }
-    }*/
+    }
 })
 
 export default class App extends React.Component {

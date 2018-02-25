@@ -3,25 +3,7 @@ import {getRandomId} from "../utils/helpers";
 
 function entries (state = {}, action) {
     switch (action.type) {
-        case RECEIVE_ENTRIES :
-            return {
-                ...state,
-                ...action.entries,//merge to existing
-            }
-        case ADD_ENTRY :
-            return {
-                ...state,
-                ...action.entry
-            }
-        case ADD_CARD :
-            const id = getRandomId()
-            return {
-                ...state,
-               [action.entryId]:{
-                   ...state[action.entryId],
-                   [id]:action.card
-               }
-            }
+
         case GET_DESKS :
             return {
                 ...state,
@@ -29,12 +11,9 @@ function entries (state = {}, action) {
             }
         case GET_DESK :
             //const {id} = action
-            return {
-                ...state,
-                ...action.entries,
-            }
+            return state
         case SAVE_DESK_TITLE :
-            //const {title} = action
+
             const entry ={}
             entry[action.title] =  {
                 title: action.title,
@@ -45,10 +24,11 @@ function entries (state = {}, action) {
                 ...entry
             }
         case ADD_CARD_TO_DESK :
-            //const {title, card} = action
             return {
                 ...state,
-                ...action.entries,
+                [action.title]:{
+                    questions:[...state[action.title].questions, action.card]
+                }
             }
         default :
             return state

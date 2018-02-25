@@ -1,7 +1,7 @@
 import React, {Component} from "react";
-import {Platform, StyleSheet, Text, TouchableOpacity, View} from "react-native";
+import {Platform, StyleSheet, Text, TouchableOpacity, View, ScrollView} from "react-native";
 import {connect} from "react-redux";
-import {receiveEntries} from "../actions";
+import {getDesks} from "../actions";
 import {fetchCalendarResults} from "../utils/api";
 import {gray, lightBlue, white} from "../utils/colors";
 import {AppLoading} from "expo";
@@ -15,7 +15,7 @@ class Desks extends Component {
         const {dispatch} = this.props
 
         fetchCalendarResults()
-            .then((entries) => dispatch(receiveEntries(entries)))
+            .then((entries) => dispatch(getDesks(entries)))
             .then(() => this.setState(() => ({ready: true})))
     }
 
@@ -27,7 +27,7 @@ class Desks extends Component {
         }
         return (
 
-            <View>
+            <ScrollView>
                 {Object.keys(entries).map((key) => {
                     return (
                         <TouchableOpacity
@@ -39,18 +39,19 @@ class Desks extends Component {
                         >
                             <View style={styles.item} key={key}>
                                 <Text style={{color: lightBlue, fontSize: 25}}>
-                                    {entries[key].title}
+                                    {key}
 
                                 </Text>
                                 <Text style={{fontSize: 16, color: gray}}>
 
                                     {entries[key].questions.length} cards
                                 </Text>
+
                             </View>
                         </TouchableOpacity>
                     )
                 })}
-            </View>
+            </ScrollView>
         )
     }
 }

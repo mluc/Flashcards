@@ -15,13 +15,13 @@ class DeskDetail extends Component {
     }
 
     render() {
-        const {entryId, cards, title} = this.props
+        const {entryId, cards} = this.props
 
         return (
             <View style={styles.container}>
                 <View>
                     <Text style={{color: lightBlue, fontSize: 25}}>
-                        {title}
+                        {entryId}
                     </Text>
                     <Text style={{fontSize: 16, color: gray}}>
                         {cards.length} cards
@@ -72,8 +72,7 @@ function mapStateToProps(state, {navigation}) {
 
     return {
         entryId,
-        cards: state[entryId].questions,
-        title: state[entryId].title
+        cards: state[entryId].questions
     }
 }
 

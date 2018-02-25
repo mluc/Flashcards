@@ -22,7 +22,7 @@ class Quiz extends Component {
     }
 
     componentDidMount() {
-        this.prepareQuestion(Object.keys(this.props.navigation.state.params.cards).length > 0 ? 1 : 0)
+        this.prepareQuestion(this.props.navigation.state.params.cards.length > 0 ? 1 : 0)
     }
 
     state = {
@@ -36,14 +36,14 @@ class Quiz extends Component {
     }
     prepareQuestion = (num) => {
         const {cards} = this.props.navigation.state.params
-        const card = num === 0 ? null : cards[Object.keys(cards)[num - 1]]
+        const card = num === 0 ? null : cards[num - 1]
 
         this.setState(() => ({
             isCorrect: false,
             questionNum: num,
             showQuestion: true,
             cardQuestion: num === 0 ? null : card.question,
-            cardAnswer: num === 0 ? null : card.correctAnswer
+            cardAnswer: num === 0 ? null : card.answer
         }))
 
     }
@@ -59,7 +59,7 @@ class Quiz extends Component {
             correctCount: 0,
             isDone: false
         }))
-        this.prepareQuestion(Object.keys(this.props.navigation.state.params.cards).length > 0 ? 1 : 0)
+        this.prepareQuestion(this.props.navigation.state.params.cards.length > 0 ? 1 : 0)
     }
     checkAnswer = (questionNum, cardsArrayLength) => () => {
         const {isCorrect, correctCount} = this.state
@@ -84,12 +84,12 @@ class Quiz extends Component {
     render() {
         const {cards} = this.props.navigation.state.params
         const {questionNum, showQuestion, isDone, correctCount, cardQuestion, cardAnswer} = this.state
-        const cardIdsArray = Object.keys(cards)
+
         if (isDone) {
             return (
                 <View style={styles.center}>
                     <Text style={{color: lightBlue, fontSize: 25}}>
-                        {correctCount} / {cardIdsArray.length} correct!
+                        {correctCount} / {cards.length} correct!
                     </Text>
                     <View style={{justifyContent: 'center'}}>
                         <TakeQuizAgainBtn onPress={this.takeQuizAgainClick}/>
@@ -104,7 +104,7 @@ class Quiz extends Component {
         return (
             <View style={styles.container}>
                 <Text style={{color: lightBlue, fontSize: 25}}>
-                    {questionNum} / {cardIdsArray.length}
+                    {questionNum} / {cards.length}
                 </Text>
 
                 {showQuestion &&
@@ -145,8 +145,8 @@ class Quiz extends Component {
                         <IncorrectBtn onPress={this.incorrectBtnClick}/>
                     </View>
                     <View style={{justifyContent: 'center'}}>
-                        <NextQuestionBtn isDone={questionNum === cardIdsArray.length}
-                                         onPress={this.checkAnswer(questionNum, cardIdsArray.length)}/>
+                        <NextQuestionBtn isDone={questionNum === cards.length}
+                                         onPress={this.checkAnswer(questionNum, cards.length)}/>
                     </View>
                 </View>
 

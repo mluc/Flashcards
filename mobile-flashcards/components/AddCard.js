@@ -2,7 +2,7 @@ import React, {Component} from "react";
 import {StyleSheet, Text, TextInput, View} from "react-native";
 import {connect} from "react-redux";
 import {gray, lightBlue} from "../utils/colors";
-import {addCard} from "../actions";
+import {addCardToDeck} from "../actions";
 import {NavigationActions} from "react-navigation";
 import {SubmitBtn} from "./Buttons";
 
@@ -25,11 +25,11 @@ class AddCard extends Component {
 
         const card = {
             "question": this.state.question,
-            "correctAnswer": this.state.answer
+            "answer": this.state.answer
         }
 
-        this.props.dispatch(addCard({
-            card: card, entryId: entryId
+        this.props.dispatch(addCardToDeck({
+            card: card, title: entryId
         }))
 
         this.props.navigation.dispatch(NavigationActions.back())
