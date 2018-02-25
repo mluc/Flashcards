@@ -1,10 +1,10 @@
 import React, {Component} from "react";
-import {Platform, StyleSheet, Text, TextInput, TouchableOpacity, View} from "react-native";
+import {StyleSheet, Text, TextInput, View} from "react-native";
 import {connect} from "react-redux";
-import {gray, lightBlue, white} from "../utils/colors";
+import {gray, lightBlue} from "../utils/colors";
 import {addCard} from "../actions";
 import {NavigationActions} from "react-navigation";
-import {SubmitBtn} from './Buttons'
+import {SubmitBtn} from "./Buttons";
 
 class AddCard extends Component {
     static navigationOptions = () => {
@@ -14,8 +14,8 @@ class AddCard extends Component {
         }
     }
     state = {
-        question: "question1",
-        answer: "answer1",
+        question: null,
+        answer: null,
     }
     submit = (entryId) => () => {
 

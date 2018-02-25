@@ -1,10 +1,8 @@
 import React, {Component} from "react";
-import {Platform, StyleSheet, Text, TouchableOpacity, View} from "react-native";
+import {StyleSheet, Text, View} from "react-native";
 import {connect} from "react-redux";
-import {getDailyReminderValue, timeToString} from "../utils/helpers";
 import {gray, lightBlue, white} from "../utils/colors";
-import {addEntry} from "../actions";
-import {AddCardBtn,StartQuizBtn } from './Buttons'
+import {AddCardBtn, StartQuizBtn} from "./Buttons";
 
 
 class DeskDetail extends Component {
@@ -44,7 +42,6 @@ class DeskDetail extends Component {
                             {cards: cards})
                     }/>
                 </View>
-
 
 
             </View>

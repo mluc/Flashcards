@@ -1,18 +1,18 @@
 import React, {Component} from "react";
-import {Platform, ScrollView, StyleSheet, Text, TouchableOpacity, View} from "react-native";
-import {clearLocalNotification, setLocalNotification, timeToString} from "../utils/helpers";
+import {ScrollView, StyleSheet, Text, View} from "react-native";
+import {clearLocalNotification, setLocalNotification} from "../utils/helpers";
 import {connect} from "react-redux";
-import {gray, green, lightBlue, red, white} from "../utils/colors";
+import {gray, lightBlue, white} from "../utils/colors";
 import {NavigationActions} from "react-navigation";
 import {
     AnswerBtn,
-    QuestionBtn,
-    TakeQuizAgainBtn,
     BackToDeskBtn,
     CorrectBtn,
     IncorrectBtn,
-    NextQuestionBtn
-} from './Buttons'
+    NextQuestionBtn,
+    QuestionBtn,
+    TakeQuizAgainBtn
+} from "./Buttons";
 
 class Quiz extends Component {
     static navigationOptions = () => {
@@ -32,7 +32,7 @@ class Quiz extends Component {
         isDone: false,
         isCorrect: false,
         cardQuestion: null,
-        cardAnswer : null
+        cardAnswer: null
     }
     prepareQuestion = (num) => {
         const {cards} = this.props.navigation.state.params
@@ -61,7 +61,7 @@ class Quiz extends Component {
         }))
         this.prepareQuestion(Object.keys(this.props.navigation.state.params.cards).length > 0 ? 1 : 0)
     }
-    checkAnswer = (questionNum, cardsArrayLength) => () =>{
+    checkAnswer = (questionNum, cardsArrayLength) => () => {
         const {isCorrect, correctCount} = this.state
         if (isCorrect) {
             this.setState(() => ({correctCount: correctCount + 1}))
@@ -145,7 +145,7 @@ class Quiz extends Component {
                         <IncorrectBtn onPress={this.incorrectBtnClick}/>
                     </View>
                     <View style={{justifyContent: 'center'}}>
-                        <NextQuestionBtn isDone={questionNum===cardIdsArray.length}
+                        <NextQuestionBtn isDone={questionNum === cardIdsArray.length}
                                          onPress={this.checkAnswer(questionNum, cardIdsArray.length)}/>
                     </View>
                 </View>

@@ -1,12 +1,11 @@
 import React, {Component} from "react";
-import {Platform, StyleSheet, Text, TextInput, TouchableOpacity, View} from "react-native";
-import {timeToString} from "../utils/helpers";
+import {StyleSheet, Text, TextInput, View} from "react-native";
+
 import {connect} from "react-redux";
 import {gray, lightBlue, white} from "../utils/colors";
-import { NavigationActions } from 'react-navigation'
-import { addEntry } from '../actions'
-import { submitEntry, removeEntry } from '../utils/api'
-import {SubmitBtn} from './Buttons'
+import {addEntry} from "../actions";
+import {submitEntry} from "../utils/api";
+import {SubmitBtn} from "./Buttons";
 
 class AddDesk extends Component {
 
@@ -19,19 +18,20 @@ class AddDesk extends Component {
         const entry = {}
 
         this.props.dispatch(addEntry({
-            [key]:entry
+            [key]: entry
         }))
 
         this.props.navigation.navigate(
             'DeskDetail',
-            {entryId: this.state.newTitle, test: entry }
+            {entryId: this.state.newTitle, test: entry}
         )
-        submitEntry({ key, entry })
+        submitEntry({key, entry})
     }
 
     state = {
-        newTitle:timeToString((new Date()).setDate((new Date()).getDate() - 3))
+        newTitle: null
     }
+
     render() {
         return (
             <View style={styles.container}>
@@ -46,7 +46,7 @@ class AddDesk extends Component {
                     />
 
                 </View>
-                <SubmitBtn onPress={this.submit} />
+                <SubmitBtn onPress={this.submit}/>
 
             </View>
         )
