@@ -36,7 +36,7 @@ function entries (state = {}, action) {
         case SAVE_DESK_TITLE :
             //const {title} = action
             const entry ={}
-            entry[action.id] =  {
+            entry[action.title] =  {
                 title: action.title,
                 questions: []
             }

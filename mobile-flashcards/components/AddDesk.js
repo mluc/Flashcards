@@ -15,15 +15,13 @@ class AddDesk extends Component {
             return
         }
 
-        const newId = getRandomId()
         this.props.dispatch(saveDeckTitle({
-            id: newId,
             title: this.state.newTitle
         }))
 
         this.props.navigation.navigate(
             'DeskDetail',
-            {title: this.state.newTitle, entryId: newId}
+            {entryId: this.state.newTitle}
         )
     }
 

@@ -43,10 +43,9 @@ export function getDesk({id}) {
     }
 }
 
-export function saveDeckTitle({id, title}) {
+export function saveDeckTitle({title}) {
     return {
         type: SAVE_DESK_TITLE,
-        id,
         title
     }
 }

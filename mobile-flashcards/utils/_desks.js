@@ -18,12 +18,12 @@ function setDummyData () {
     card2["question"] = "What is the capital of VietNam?"
     card2["answer"] = "Ha Noi"
 
-    dummyData[getRandomId()] = {
+    dummyData['Desk 1'] = {
         title: 'Desk 1',
         questions:[card1, card2]
     }
 
-    dummyData[getRandomId()] = {
+    dummyData['Desk 2'] = {
         title: 'Desk 2',
         questions:[]
     }

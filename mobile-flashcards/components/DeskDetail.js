@@ -7,10 +7,10 @@ import {AddCardBtn, StartQuizBtn} from "./Buttons";
 
 class DeskDetail extends Component {
     static navigationOptions = ({navigation}) => {
-        const {title} = navigation.state.params
+        const {entryId} = navigation.state.params
 
         return {
-            title: title
+            title: entryId
         }
     }
 
@@ -68,12 +68,12 @@ const styles = StyleSheet.create({
 })
 
 function mapStateToProps(state, {navigation}) {
-    const {entryId, title} = navigation.state.params
+    const {entryId} = navigation.state.params
 
     return {
         entryId,
         cards: state[entryId].questions,
-        title
+        title: state[entryId].title
     }
 }
 
