@@ -44,7 +44,11 @@ class Desks extends Component {
                                 </Text>
                                 <Text style={{fontSize: 16, color: gray}}>
 
-                                   {Object.keys(entries[key]).length} cards
+                                    {Object.keys(entries[key]).length} cards
+                                </Text>
+                                <Text style={{fontSize: 16, color: gray}}>
+
+
                                 </Text>
 
                             </View>

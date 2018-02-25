@@ -1,11 +1,12 @@
 import React, {Component} from "react";
 import {Platform, StyleSheet, Text, TextInput, TouchableOpacity, View} from "react-native";
 
-import {timeToString} from "../utils/helpers";
+import {timeToString, getRandomId} from "../utils/helpers";
 import {connect} from "react-redux";
 import {gray, lightBlue, white} from "../utils/colors";
 import {addCard} from '../actions'
 import {submitEntry, removeEntry} from '../utils/api'
+import { NavigationActions } from 'react-navigation'
 
 function SubmitBtn({onPress}) {
     return (
@@ -27,17 +28,22 @@ class AddCard extends Component {
         question: "question1",
         answer: "answer1",
     }
-    submit = (entryId, cards) => {
-        const card = {}
-        card["question"] = this.state.question
-        card["correctAnswer"] = this.state.answer
+    submit = (entryId) => () =>{
 
-        //this.props.dispatch(addCard({
-        //    entryId, card
-        //}))
+        if (!this.state.question || !this.state.answer) {
+            return
+        }
 
+        const card = {
+            "question": this.state.question,
+            "correctAnswer": this.state.answer
+        }
 
-        //submitEntry({ entryId, cards })
+        this.props.dispatch(addCard({
+            card:card, entryId: entryId
+        }))
+
+        this.props.navigation.dispatch(NavigationActions.back())
     }
 
     render() {
@@ -73,7 +79,7 @@ class AddCard extends Component {
                     value={this.state.answer}
                 />
 
-                <SubmitBtn onPress={this.submit(entryId, cards)}/>
+                <SubmitBtn onPress={this.submit(entryId)}/>
             </View>
         )
     }

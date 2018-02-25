@@ -15,7 +15,7 @@ function setDummyData () {
     const strTime = timeToString(timestamp)
 
     const card1 = {}
-    card1["question"] = "What is capital of Texas?"
+    card1["question"] = "What is capital of Texas? What is capital of Texas? What is capital of Texas? What is capital of Texas? What is capital of Texas?"
     card1["correctAnswer"] = "Austin"
 
     const card2 = {}

@@ -16,7 +16,7 @@ export function addEntry (entry) {
     }
 }
 
-export function addCard (entryId, card) {
+export function addCard ({entryId, card}) {
     return {
         type: ADD_CARD,
         entryId,

@@ -1,4 +1,5 @@
 import { RECEIVE_ENTRIES, ADD_ENTRY, ADD_CARD } from '../actions'
+import {timeToString, getRandomId} from "../utils/helpers";
 
 function entries (state = {}, action) {
     switch (action.type) {
@@ -13,13 +14,13 @@ function entries (state = {}, action) {
                 ...action.entry
             }
         case ADD_CARD :
+            const id = getRandomId()
             return {
                 ...state,
                [action.entryId]:{
                    ...state[action.entryId],
-                   ['cards']:action.card
+                   [id]:action.card
                }
-
             }
         default :
             return state

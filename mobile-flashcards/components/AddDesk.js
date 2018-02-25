@@ -19,6 +19,10 @@ function SubmitBtn ({ onPress }) {
 class AddDesk extends Component {
 
     submit = () => {
+        if (!this.state.newTitle) {
+            return
+        }
+
         const key = this.state.newTitle
         const entry = {}
 
