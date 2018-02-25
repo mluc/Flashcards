@@ -6,6 +6,7 @@ import {gray, lightBlue, white} from "../utils/colors";
 import {addEntry, saveDeckTitle} from "../actions";
 import {submitEntry} from "../utils/api";
 import {SubmitBtn} from "./Buttons";
+import {getRandomId} from "../utils/helpers"
 
 class AddDesk extends Component {
 
@@ -14,19 +15,16 @@ class AddDesk extends Component {
             return
         }
 
-        const key = this.state.newTitle
-        const entry = {}
-
+        const newId = getRandomId()
         this.props.dispatch(saveDeckTitle({
+            id: newId,
             title: this.state.newTitle
         }))
 
-        /*
         this.props.navigation.navigate(
             'DeskDetail',
-            {entryId: this.state.newTitle, test: entry}
-        )*/
-        //submitEntry({key, entry})
+            {title: this.state.newTitle, entryId: newId}
+        )
     }
 
     state = {

@@ -63,7 +63,7 @@ const MainNavigator = StackNavigator({
     Home: {
         screen: Tabs,
     },
-/*
+
     DeskDetail: {
         screen: DeskDetail,
         navigationOptions: {
@@ -73,7 +73,7 @@ const MainNavigator = StackNavigator({
             }
         }
     },
-
+/*
     AddCard: {
         screen: AddCard,
         navigationOptions: {

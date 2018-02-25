@@ -33,7 +33,7 @@ class Desks extends Component {
                         <TouchableOpacity
                             onPress={() => this.props.navigation.navigate(
                                 'DeskDetail',
-                                {entryId: key}
+                                {entryId: key, title: entries[key].title}
                             )}
                             key={key}
                         >
