@@ -8,7 +8,9 @@ import {submitEntry} from "../utils/api";
 import {SubmitBtn} from "./Buttons";
 
 class AddDesk extends Component {
-
+    componentDidMount() {
+        this.setState(() => ({newTitle: null}))
+    }
     submit = () => {
         if (!this.state.newTitle) {
             return
