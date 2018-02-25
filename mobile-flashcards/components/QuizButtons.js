@@ -73,6 +73,16 @@ export function NextQuestionBtn({onPress, isDone}) {
     )
 }
 
+export function SubmitBtn({onPress}) {
+    return (
+        <TouchableOpacity
+            style={Platform.OS === 'ios' ? styles.iosSubmitBtn : styles.AndroidSubmitBtn}
+            onPress={onPress}>
+            <Text style={styles.submitBtnText}>SUBMIT</Text>
+        </TouchableOpacity>
+    )
+}
+
 const styles = StyleSheet.create({
     iosSubmitBtn: {
         backgroundColor: lightBlue,

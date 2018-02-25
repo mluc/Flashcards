@@ -4,16 +4,8 @@ import {connect} from "react-redux";
 import {gray, lightBlue, white} from "../utils/colors";
 import {addCard} from "../actions";
 import {NavigationActions} from "react-navigation";
+import {SubmitBtn} from './QuizButtons'
 
-function SubmitBtn({onPress}) {
-    return (
-        <TouchableOpacity
-            style={Platform.OS === 'ios' ? styles.iosSubmitBtn : styles.AndroidSubmitBtn}
-            onPress={onPress}>
-            <Text style={styles.submitBtnText}>SUBMIT</Text>
-        </TouchableOpacity>
-    )
-}
 class AddCard extends Component {
     static navigationOptions = () => {
 
@@ -88,35 +80,6 @@ const styles = StyleSheet.create({
         borderWidth: 1,
     },
 
-    row: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        backgroundColor: 'transparent',
-    },
-    iosSubmitBtn: {
-        backgroundColor: lightBlue,
-        padding: 10,
-        borderRadius: 7,
-        height: 45,
-        marginLeft: 40,
-        marginRight: 40,
-    },
-    AndroidSubmitBtn: {
-        backgroundColor: lightBlue,
-        padding: 10,
-        paddingLeft: 30,
-        paddingRight: 30,
-        height: 45,
-        borderRadius: 2,
-        alignSelf: 'flex-end',
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    submitBtnText: {
-        color: white,
-        fontSize: 22,
-        textAlign: 'center',
-    },
     center: {
         flex: 1,
         justifyContent: 'flex-start',
