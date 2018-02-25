@@ -1,8 +1,6 @@
 import React, {Component} from "react";
 import {Platform, ScrollView, StyleSheet, Text, TouchableOpacity, View} from "react-native";
-import {timeToString,
-    clearLocalNotification,
-    setLocalNotification} from "../utils/helpers";
+import {clearLocalNotification, setLocalNotification, timeToString} from "../utils/helpers";
 import {connect} from "react-redux";
 import {gray, green, lightBlue, red, white} from "../utils/colors";
 import {NavigationActions} from "react-navigation";
@@ -75,15 +73,25 @@ class Quiz extends Component {
         correctCount: 0,
         showQuestion: true,
         isDone: false,
-        isCorrect:false
+        isCorrect: false,
+        cardQuestion: null
     }
     prepareQuestion = (num) => {
-        this.setState(() => ({isCorrect:false, questionNum: num, showQuestion: true}))
+        const {cards} = this.props.navigation.state.params
+        const card = num === 0 ? null : cards[Object.keys(cards)[num - 1]]
+
+        this.setState(() => ({
+            isCorrect: false,
+            questionNum: num,
+            showQuestion: true,
+            cardQuestion: num === 0 ? null : card.question,
+            cardAnswer: num === 0 ? null : card.correctAnswer
+        }))
 
     }
 
     componentDidMount() {
-        this.prepareQuestion(this.props.navigation.state.params.cards.length > 0 ? 1 : 0)
+        this.prepareQuestion(Object.keys(this.props.navigation.state.params.cards).length > 0 ? 1 : 0)
     }
 
     answerClick = () => {
@@ -98,17 +106,20 @@ class Quiz extends Component {
             correctCount: 0,
             isDone: false
         }))
-        this.prepareQuestion(this.props.navigation.state.params.cards.length > 0 ? 1 : 0)
+        this.prepareQuestion(Object.keys(this.props.navigation.state.params.cards).length > 0 ? 1 : 0)
     }
 
     checkAnswer = (isDone) => {
-        this.props.navigation.state.params.cards.map((card, index) => {
-            if (index === this.state.questionNum -1) {
-                if(this.state.isCorrect)
-                    this.setState(() => ({correctCount: this.state.correctCount + 1}))
+        const {questionNum, isCorrect, correctCount} = this.state
+
+        Object.keys(this.props.navigation.state.params.cards).map((key, index) => {
+            if (index === questionNum - 1) {
+                if (isCorrect) {
+                    this.setState(() => ({correctCount: correctCount + 1}))
+                }
             }
         })
-        if (isDone){
+        if (isDone) {
             this.setState(() => ({isDone: true}))
             clearLocalNotification().then(setLocalNotification)
         }
@@ -125,11 +136,13 @@ class Quiz extends Component {
     render() {
 
         const {cards} = this.props.navigation.state.params
-        if (this.state.isDone) {
+        const {questionNum, showQuestion, isDone, correctCount, cardQuestion, cardAnswer} = this.state
+        const cardsArray = Object.keys(cards)
+        if (isDone) {
             return (
                 <View style={styles.center}>
                     <Text style={{color: lightBlue, fontSize: 25}}>
-                        {this.state.correctCount} / {cards.length} correct!
+                        {correctCount} / {cardsArray.length} correct!
                     </Text>
                     <View style={{justifyContent: 'center'}}>
                         <TakeQuizAgainBtn onPress={this.takeQuizAgainClick}/>
@@ -144,46 +157,38 @@ class Quiz extends Component {
         return (
             <View style={styles.container}>
                 <Text style={{color: lightBlue, fontSize: 25}}>
-                    {this.state.questionNum} / {cards.length}
+                    {questionNum} / {cardsArray.length}
                 </Text>
-                {cards.map((card, index) => {
 
-                    if (index === this.state.questionNum - 1) {
+                {showQuestion &&
+                <View style={styles.center}>
 
-                        if (this.state.showQuestion) {
-                            return (
+                    <ScrollView>
+                        <Text style={{color: gray, fontSize: 25}}>
+                            {cardQuestion}
+                        </Text>
+                    </ScrollView>
+                    <View style={{justifyContent: 'center'}}>
+                        <AnswerBtn onPress={this.answerClick}/>
+                    </View>
 
-                                <View style={styles.center} key={index}>
+                </View>
+                }
 
-                                    <ScrollView>
-                                        <Text style={{color: gray, fontSize: 25}}>
-                                            {card.question}
-                                        </Text>
-                                    </ScrollView>
-                                    <View style={{justifyContent: 'center'}}>
-                                        <AnswerBtn onPress={this.answerClick}/>
-                                    </View>
+                {!showQuestion &&
+                <View style={styles.center}>
 
-                                </View>
-                            )
-                        }
-                        else {
-                            return (
-                                <View style={styles.center} key={index}>
-                                    <ScrollView>
-                                        <Text style={{color: gray, fontSize: 25}}>
-                                            {card.correctAnswer}
-                                        </Text>
-                                    </ScrollView>
-                                    <View style={{justifyContent: 'center'}}>
-                                        <QuestionBtn onPress={this.questionClick}/>
-                                    </View>
+                    <ScrollView>
+                        <Text style={{color: gray, fontSize: 25}}>
+                            {cardAnswer}
+                        </Text>
+                    </ScrollView>
+                    <View style={{justifyContent: 'center'}}>
+                        <QuestionBtn onPress={this.questionClick}/>
+                    </View>
 
-                                </View>
-                            )
-                        }
-                    }
-                })}
+                </View>
+                }
 
                 <View style={styles.center}>
                     <View style={{justifyContent: 'center'}}>
@@ -196,20 +201,19 @@ class Quiz extends Component {
                         <TouchableOpacity
                             style={Platform.OS === 'ios' ? styles.iosSubmitBtn : styles.AndroidSubmitBtn}
                             onPress={() => {
-                                this.prepareQuestion(this.state.questionNum + 1),
-                                    this.checkAnswer(this.state.questionNum === cards.length,
-                                    )
+                                const doneQuiz = questionNum === cardsArray.length;
+                                this.prepareQuestion(doneQuiz ? 0 : questionNum + 1);
+                                this.checkAnswer(doneQuiz)
                             }}>
                             <Text
                                 style={styles.submitBtnText}>
-                                {this.state.questionNum === cards.length ? 'Done' : 'Next Question'}
+                                {questionNum === cardsArray.length ? 'Done' : 'Next Question'}
                             </Text>
                         </TouchableOpacity>
                     </View>
                 </View>
 
             </View>
-
         )
     }
 }
@@ -247,10 +251,10 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
     },
-    redBackground:{
+    redBackground: {
         backgroundColor: red,
     },
-    greenBackground:{
+    greenBackground: {
         backgroundColor: green,
     },
     submitBtnText: {

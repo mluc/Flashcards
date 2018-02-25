@@ -20,7 +20,7 @@ class AddDesk extends Component {
 
     submit = () => {
         const key = this.state.newTitle
-        const entry = {"cards":[]}
+        const entry = {"cards":{}}
 
         this.props.dispatch(addEntry({
             [key]:entry

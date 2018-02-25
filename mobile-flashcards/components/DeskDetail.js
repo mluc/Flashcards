@@ -59,7 +59,7 @@ class DeskDetail extends Component {
                         {entryId}
                     </Text>
                     <Text style={{fontSize: 16, color: gray}}>
-                        {values.cards.length} cards
+                        {Object.keys(values.cards).length} cards
                     </Text>
                     <Text>
                        {JSON.stringify(this.props)}

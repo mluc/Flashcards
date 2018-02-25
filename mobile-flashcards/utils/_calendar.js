@@ -1,5 +1,5 @@
 import {AsyncStorage} from "react-native";
-import {timeToString} from "./helpers";
+import {timeToString, getRandomId} from "./helpers";
 
 export const CALENDAR_STORAGE_KEY = 'Project:desks'
 
@@ -15,7 +15,7 @@ function setDummyData () {
     const strTime = timeToString(timestamp)
 
     const card1 = {}
-    card1["question"] = "What is capital of TexaWhat is capital of TexasWhat is capital of TexasWhat is capital of TexasWhat is capital of TexasWhat is capital of TexasWhat is capital of TexasWhat is capital of TexasWhat is capital of TexasWhat is capital of TexasWhat is capital of TexasWhat is capital of TexasWhat is capital of TexasWhat is capital of TexasWhat is capital of TexasWhat is capital of TexasWhat is capital of Texass?"
+    card1["question"] = "What is capital of Texas?"
     card1["correctAnswer"] = "Austin"
 
     const card2 = {}
@@ -26,13 +26,18 @@ function setDummyData () {
     card3["question"] = "What is capital of VietNam?"
     card3["correctAnswer"] = "Ho Chi Minh"
 
+    const cards = {}
+    cards[getRandomId()] = card1
+    cards[getRandomId()] = card2
+    cards[getRandomId()] = card3
+
     dummyData[strTime] = {
         run:2,
         bike:3,
         swim:3,
         eat:4,
         sleep:4,
-        cards: [card1, card2, card3]
+        cards: cards
     }
 
     var date = new Date();
@@ -43,7 +48,7 @@ function setDummyData () {
         swim:13,
         eat:14,
         sleep:14,
-        cards:[]
+        cards:{}
     }
     AsyncStorage.setItem(CALENDAR_STORAGE_KEY, JSON.stringify(dummyData))
 
