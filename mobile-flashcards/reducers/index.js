@@ -10,8 +10,8 @@ function entries (state = {}, action) {
                 ...action.entries,
             }
         case GET_DESK :
-            //const {id} = action
-            return state
+            return state[action.id]
+        
         case SAVE_DESK_TITLE :
 
             const entry ={}

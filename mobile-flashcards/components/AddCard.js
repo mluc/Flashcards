@@ -34,7 +34,7 @@ class AddCard extends Component {
         }))
 
         const key = entryId
-        submitCard({ key, card })
+        submitCard({key, card})
 
         this.props.navigation.dispatch(NavigationActions.back())
     }

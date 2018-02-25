@@ -6,7 +6,6 @@ import {gray, lightBlue, white} from "../utils/colors";
 import {addEntry, saveDeckTitle} from "../actions";
 import {submitEntry} from "../utils/api";
 import {SubmitBtn} from "./Buttons";
-import {getRandomId} from "../utils/helpers"
 
 class AddDesk extends Component {
 
@@ -19,12 +18,12 @@ class AddDesk extends Component {
             title: this.state.newTitle
         }))
 
-        const entry ={
+        const entry = {
             title: this.state.newTitle,
             questions: []
         }
         const key = this.state.newTitle
-        submitEntry({ key, entry })
+        submitEntry({key, entry})
 
         this.props.navigation.navigate(
             'DeskDetail',
