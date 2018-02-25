@@ -50,7 +50,7 @@ class DeskDetail extends Component {
     }
 */
     render() {
-        const {entryId, values} = this.props
+        const {entryId, cards} = this.props
 
         return (
             <View style={styles.container}>
@@ -59,22 +59,22 @@ class DeskDetail extends Component {
                         {entryId}
                     </Text>
                     <Text style={{fontSize: 16, color: gray}}>
-                        {Object.keys(values.cards).length} cards
+                        {Object.keys(cards).length} cards
                     </Text>
                     <Text>
-                       {JSON.stringify(this.props)}
+                       {JSON.stringify(this.props.cards)}
                     </Text>
 
                 </View>
                 <AddCardBtn onPress={()=>
                     this.props.navigation.navigate(
                         'AddCard',
-                        {entryId: entryId, values: values})
+                        {entryId: entryId, cards: cards})
                 }/>
                 <StartQuizBtn onPress={()=>
                     this.props.navigation.navigate(
                         'Quiz',
-                        {cards: values.cards})
+                        {cards: cards})
                 }/>
 
             </View>
@@ -127,7 +127,7 @@ function mapStateToProps(state, {navigation}) {
 
     return {
         entryId,
-        values: state[entryId]
+        cards: state[entryId]
     }
 }
 

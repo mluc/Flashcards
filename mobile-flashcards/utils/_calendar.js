@@ -31,25 +31,11 @@ function setDummyData () {
     cards[getRandomId()] = card2
     cards[getRandomId()] = card3
 
-    dummyData[strTime] = {
-        run:2,
-        bike:3,
-        swim:3,
-        eat:4,
-        sleep:4,
-        cards: cards
-    }
+    dummyData[strTime] = cards
 
     var date = new Date();
     date.setDate(date.getDate() - 1);
-    dummyData[timeToString(date)] = {
-        run:12,
-        bike:13,
-        swim:13,
-        eat:14,
-        sleep:14,
-        cards:{}
-    }
+    dummyData[timeToString(date)] = {}
     AsyncStorage.setItem(CALENDAR_STORAGE_KEY, JSON.stringify(dummyData))
 
     return dummyData

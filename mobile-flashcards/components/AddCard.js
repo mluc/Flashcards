@@ -27,7 +27,7 @@ class AddCard extends Component {
         question: "question1",
         answer: "answer1",
     }
-    submit = (entryId, values) => {
+    submit = (entryId, cards) => {
         const card = {}
         card["question"] = this.state.question
         card["correctAnswer"] = this.state.answer
@@ -37,18 +37,18 @@ class AddCard extends Component {
         //}))
 
 
-        //submitEntry({ entryId, values })
+        //submitEntry({ entryId, cards })
     }
 
     render() {
-        const {entryId, values} = this.props.navigation.state.params
+        const {entryId, cards} = this.props.navigation.state.params
 
         return (
             <View style={styles.center}>
 
                 <Text>
                     {JSON.stringify(entryId)}
-                    {JSON.stringify(values)}
+                    {JSON.stringify(cards)}
                 </Text>
                 <Text style={{color: lightBlue, fontSize: 25}}>
                     Question:
@@ -73,7 +73,7 @@ class AddCard extends Component {
                     value={this.state.answer}
                 />
 
-                <SubmitBtn onPress={this.submit(entryId, values)}/>
+                <SubmitBtn onPress={this.submit(entryId, cards)}/>
             </View>
         )
     }
