@@ -14,10 +14,10 @@ import AddCard from "./components/AddCard";
 import Quiz from "./components/Quiz";
 import {setLocalNotification} from "./utils/helpers";
 
-function TopStatusBar ({backgroundColor, ...props}) {
+function TopStatusBar({backgroundColor, ...props}) {
     return (
-        <View style={{ backgroundColor, height: Constants.statusBarHeight }}>
-          <StatusBar translucent backgroundColor={backgroundColor} {...props} />
+        <View style={{backgroundColor, height: Constants.statusBarHeight}}>
+            <StatusBar translucent backgroundColor={backgroundColor} {...props} />
         </View>
     )
 }
@@ -27,7 +27,7 @@ const Tabs = TabNavigator({
         screen: Desks,
         navigationOptions: {
             tabBarLabel: 'Desks',
-            tabBarIcon: ({ tintColor }) => <Ionicons name='ios-bookmarks' size={30} color={tintColor} />
+            tabBarIcon: ({tintColor}) => <Ionicons name='ios-bookmarks' size={30} color={tintColor}/>
         },
     },
 
@@ -35,7 +35,7 @@ const Tabs = TabNavigator({
         screen: AddDesk,
         navigationOptions: {
             tabBarLabel: 'Add Desk',
-            tabBarIcon: ({ tintColor }) => <Ionicons name='ios-bookmarks' size={30} color={tintColor} />
+            tabBarIcon: ({tintColor}) => <Ionicons name='ios-bookmarks' size={30} color={tintColor}/>
         },
     }
 
@@ -98,13 +98,14 @@ export default class App extends React.Component {
     componentDidMount() {
         setLocalNotification()
     }
+
     render() {
         return (
             <Provider store={createStore(reducer)}>
-              <View style={{flex: 1}}>
-                <TopStatusBar backgroundColor={lightBlue} barStyle="light-content" />
-                <MainNavigator />
-              </View>
+                <View style={{flex: 1}}>
+                    <TopStatusBar backgroundColor={lightBlue} barStyle="light-content"/>
+                    <MainNavigator />
+                </View>
             </Provider>
         )
     }

@@ -1,35 +1,11 @@
 import React from "react";
 import {AsyncStorage, StyleSheet} from "react-native";
-
 import {Notifications, Permissions} from "expo";
-
 const NOTIFICATION_KEY = 'Project:notifications'
-
-export function getDailyReminderValue() {
-    return {
-        today: "👋 Don't forget to log your data today!"
-    }
-}
-
-const styles = StyleSheet.create({
-    iconContainer: {
-        padding: 5,
-        borderRadius: 8,
-        width: 50,
-        height: 50,
-        justifyContent: 'center',
-        alignItems: 'center',
-        marginRight: 20
-    },
-})
 
 export function clearLocalNotification() {
     return AsyncStorage.removeItem(NOTIFICATION_KEY)
         .then(Notifications.cancelAllScheduledNotificationsAsync)
-}
-
-export function getRandomId() {
-    return Math.random().toString(36).substr(2, 10);
 }
 
 function createNotification() {
