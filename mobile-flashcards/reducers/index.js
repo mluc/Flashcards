@@ -1,5 +1,5 @@
 import { RECEIVE_ENTRIES, ADD_ENTRY, ADD_CARD } from '../actions'
-import {timeToString, getRandomId} from "../utils/helpers";
+import {getRandomId} from "../utils/helpers";
 
 function entries (state = {}, action) {
     switch (action.type) {
