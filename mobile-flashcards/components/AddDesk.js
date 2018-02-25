@@ -19,6 +19,13 @@ class AddDesk extends Component {
             title: this.state.newTitle
         }))
 
+        const entry ={
+            title: this.state.newTitle,
+            questions: []
+        }
+        const key = this.state.newTitle
+        submitEntry({ key, entry })
+
         this.props.navigation.navigate(
             'DeskDetail',
             {entryId: this.state.newTitle}

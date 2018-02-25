@@ -5,6 +5,7 @@ import {gray, lightBlue} from "../utils/colors";
 import {addCardToDeck} from "../actions";
 import {NavigationActions} from "react-navigation";
 import {SubmitBtn} from "./Buttons";
+import {submitCard} from "../utils/api";
 
 class AddCard extends Component {
     static navigationOptions = () => {
@@ -31,6 +32,9 @@ class AddCard extends Component {
         this.props.dispatch(addCardToDeck({
             card: card, title: entryId
         }))
+
+        const key = entryId
+        submitCard({ key, card })
 
         this.props.navigation.dispatch(NavigationActions.back())
     }

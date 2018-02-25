@@ -2,7 +2,7 @@ import React, {Component} from "react";
 import {Platform, StyleSheet, Text, TouchableOpacity, View, ScrollView} from "react-native";
 import {connect} from "react-redux";
 import {getDesks} from "../actions";
-import {fetchCalendarResults} from "../utils/api";
+import {fetchDesksResults} from "../utils/api";
 import {gray, lightBlue, white} from "../utils/colors";
 import {AppLoading} from "expo";
 
@@ -14,7 +14,7 @@ class Desks extends Component {
     componentDidMount() {
         const {dispatch} = this.props
 
-        fetchCalendarResults()
+        fetchDesksResults()
             .then((entries) => dispatch(getDesks(entries)))
             .then(() => this.setState(() => ({ready: true})))
     }

@@ -1,10 +1,10 @@
 import {AsyncStorage} from 'react-native'
-import {formatCalendarResults, CALENDAR_STORAGE_KEY} from './_desks'
+import {formatDesksResults, CALENDAR_STORAGE_KEY} from './_desks'
 
 
-export function fetchCalendarResults() {
+export function fetchDesksResults() {
     return AsyncStorage.getItem(CALENDAR_STORAGE_KEY)
-        .then(formatCalendarResults)
+        .then(formatDesksResults)
 }
 
 export function submitEntry({entry, key}) {
@@ -13,12 +13,13 @@ export function submitEntry({entry, key}) {
     }))
 }
 
-export function removeEntry(key) {
+export function submitCard({key, card}) {
     return AsyncStorage.getItem(CALENDAR_STORAGE_KEY)
         .then((results) => {
             const data = JSON.parse(results)
-            data[key] = undefined
-            delete data[key]
+            const questions = data[key].questions
+            questions.push(card)
+
             AsyncStorage.setItem(CALENDAR_STORAGE_KEY, JSON.stringify(data))
         })
 }
