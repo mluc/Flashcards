@@ -4,7 +4,7 @@ import {connect} from "react-redux";
 import {gray, lightBlue, white} from "../utils/colors";
 import {addCard} from "../actions";
 import {NavigationActions} from "react-navigation";
-import {SubmitBtn} from './QuizButtons'
+import {SubmitBtn} from './Buttons'
 
 class AddCard extends Component {
     static navigationOptions = () => {
@@ -69,11 +69,7 @@ class AddCard extends Component {
 }
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        padding: 20,
-        backgroundColor: white
-    },
+
     textInput: {
         alignSelf: 'stretch',
         borderColor: 'gray',

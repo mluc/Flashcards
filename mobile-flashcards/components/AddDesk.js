@@ -6,7 +6,7 @@ import {gray, lightBlue, white} from "../utils/colors";
 import { NavigationActions } from 'react-navigation'
 import { addEntry } from '../actions'
 import { submitEntry, removeEntry } from '../utils/api'
-import {SubmitBtn} from './QuizButtons'
+import {SubmitBtn} from './Buttons'
 
 class AddDesk extends Component {
 

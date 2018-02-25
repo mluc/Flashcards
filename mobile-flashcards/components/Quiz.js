@@ -12,7 +12,7 @@ import {
     CorrectBtn,
     IncorrectBtn,
     NextQuestionBtn
-} from './QuizButtons'
+} from './Buttons'
 
 class Quiz extends Component {
     static navigationOptions = () => {
@@ -163,16 +163,7 @@ const styles = StyleSheet.create({
         justifyContent: 'space-around',
 
     },
-    row: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        backgroundColor: 'transparent',
-    },
-    submitBtnText: {
-        color: white,
-        fontSize: 22,
-        textAlign: 'center',
-    },
+
     center: {
         flex: 1,
         justifyContent: 'space-around',

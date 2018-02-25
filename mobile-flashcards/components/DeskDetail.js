@@ -4,7 +4,7 @@ import {connect} from "react-redux";
 import {getDailyReminderValue, timeToString} from "../utils/helpers";
 import {gray, lightBlue, white} from "../utils/colors";
 import {addEntry} from "../actions";
-import {AddCardBtn,StartQuizBtn } from './QuizButtons'
+import {AddCardBtn,StartQuizBtn } from './Buttons'
 
 
 class DeskDetail extends Component {

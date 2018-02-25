@@ -72,11 +72,6 @@ const styles = StyleSheet.create({
             height: 3
         },
     },
-    noDataText: {
-        fontSize: 20,
-        paddingTop: 20,
-        paddingBottom: 20
-    }
 })
 
 
