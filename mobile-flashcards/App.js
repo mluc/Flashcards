@@ -3,13 +3,13 @@ import {Platform, StatusBar, View} from "react-native";
 import {createStore} from "redux";
 import {Provider} from "react-redux";
 import reducer from "./reducers";
-import Desks from "./components/Desks";
-import AddDesk from "./components/AddDesk";
+import Decks from "./components/Decks";
+import AddDeck from "./components/AddDeck";
 import {StackNavigator, TabNavigator} from "react-navigation";
 import {lightBlue, white} from "./utils/colors";
 import {Ionicons} from "@expo/vector-icons";
 import {Constants} from "expo";
-import DeskDetail from "./components/DeskDetail";
+import DeckDetail from "./components/DeckDetail";
 import AddCard from "./components/AddCard";
 import Quiz from "./components/Quiz";
 import {setLocalNotification} from "./utils/helpers";
@@ -23,18 +23,18 @@ function TopStatusBar({backgroundColor, ...props}) {
 }
 
 const Tabs = TabNavigator({
-    Desks: {
-        screen: Desks,
+    Decks: {
+        screen: Decks,
         navigationOptions: {
-            tabBarLabel: 'Desks',
+            tabBarLabel: 'Decks',
             tabBarIcon: ({tintColor}) => <Ionicons name='ios-bookmarks' size={30} color={tintColor}/>
         },
     },
 
-    AddDesk: {
-        screen: AddDesk,
+    AddDeck: {
+        screen: AddDeck,
         navigationOptions: {
-            tabBarLabel: 'Add Desk',
+            tabBarLabel: 'Add Deck',
             tabBarIcon: ({tintColor}) => <Ionicons name='ios-bookmarks' size={30} color={tintColor}/>
         },
     }
@@ -64,8 +64,8 @@ const MainNavigator = StackNavigator({
         screen: Tabs,
     },
 
-    DeskDetail: {
-        screen: DeskDetail,
+    DeckDetail: {
+        screen: DeckDetail,
         navigationOptions: {
             headerTintColor: white,
             headerStyle: {

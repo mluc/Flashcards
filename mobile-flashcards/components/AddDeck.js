@@ -7,7 +7,7 @@ import {addEntry, saveDeckTitle} from "../actions";
 import {submitEntry} from "../utils/api";
 import {SubmitBtn} from "./Buttons";
 
-class AddDesk extends Component {
+class AddDeck extends Component {
     componentDidMount() {
         this.setState(() => ({newTitle: null}))
     }
@@ -28,7 +28,7 @@ class AddDesk extends Component {
         submitEntry({key, entry})
 
         this.props.navigation.navigate(
-            'DeskDetail',
+            'DeckDetail',
             {entryId: this.state.newTitle}
         )
     }
@@ -42,7 +42,7 @@ class AddDesk extends Component {
             <View style={styles.container}>
                 <View>
                     <Text style={{color: lightBlue, fontSize: 25}}>
-                        New desk title:
+                        New deck title:
                     </Text>
                     <TextInput
                         style={styles.textInput}
@@ -71,4 +71,4 @@ const styles = StyleSheet.create({
     },
 })
 
-export default connect()(AddDesk)
+export default connect()(AddDeck)

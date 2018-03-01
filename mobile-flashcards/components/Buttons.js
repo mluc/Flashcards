@@ -29,12 +29,12 @@ export function TakeQuizAgainBtn({onPress}) {
         </TouchableOpacity>
     )
 }
-export function BackToDeskBtn({onPress}) {
+export function BackToDeckBtn({onPress}) {
     return (
         <TouchableOpacity
             style={Platform.OS === 'ios' ? styles.iosSubmitBtn : styles.AndroidSubmitBtn}
             onPress={onPress}>
-            <Text style={styles.submitBtnText}>Back To Desk</Text>
+            <Text style={styles.submitBtnText}>Back To Deck</Text>
         </TouchableOpacity>
     )
 }

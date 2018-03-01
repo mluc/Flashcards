@@ -1,12 +1,12 @@
 import React, {Component} from "react";
 import {Platform, ScrollView, StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import {connect} from "react-redux";
-import {getDesks} from "../actions";
-import {fetchDesksResults} from "../utils/api";
+import {getDecks} from "../actions";
+import {fetchDecksResults} from "../utils/api";
 import {gray, lightBlue, white} from "../utils/colors";
 import {AppLoading} from "expo";
 
-class Desks extends Component {
+class Decks extends Component {
     state = {
         ready: false,
     }
@@ -14,8 +14,8 @@ class Desks extends Component {
     componentDidMount() {
         const {dispatch} = this.props
 
-        fetchDesksResults()
-            .then((entries) => dispatch(getDesks(entries)))
+        fetchDecksResults()
+            .then((entries) => dispatch(getDecks(entries)))
             .then(() => this.setState(() => ({ready: true})))
     }
 
@@ -32,7 +32,7 @@ class Desks extends Component {
                     return (
                         <TouchableOpacity
                             onPress={() => this.props.navigation.navigate(
-                                'DeskDetail',
+                                'DeckDetail',
                                 {entryId: key, title: entries[key].title}
                             )}
                             key={key}
@@ -83,4 +83,4 @@ function mapStateToProps(entries) {
 }
 export default connect(
     mapStateToProps,
-)(Desks)
+)(Decks)

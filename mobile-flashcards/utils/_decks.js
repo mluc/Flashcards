@@ -1,6 +1,6 @@
 import {AsyncStorage} from "react-native";
 
-export const CALENDAR_STORAGE_KEY = 'Project:desks'
+export const CALENDAR_STORAGE_KEY = 'Project:decks'
 
 function getRandomNumber(max) {
     return Math.floor(Math.random() * max) + 0
@@ -17,13 +17,13 @@ function setDummyData() {
     card2["question"] = "What is the capital of VietNam?"
     card2["answer"] = "Ha Noi"
 
-    dummyData['Desk 1'] = {
-        title: 'Desk 1',
+    dummyData['Deck 1'] = {
+        title: 'Deck 1',
         questions: [card1, card2]
     }
 
-    dummyData['Desk 2'] = {
-        title: 'Desk 2',
+    dummyData['Deck 2'] = {
+        title: 'Deck 2',
         questions: []
     }
     AsyncStorage.setItem(CALENDAR_STORAGE_KEY, JSON.stringify(dummyData))
@@ -31,7 +31,7 @@ function setDummyData() {
     return dummyData
 }
 
-export function formatDesksResults(results) {
+export function formatDecksResults(results) {
     return results === null
         ? setDummyData()
         : JSON.parse(results)

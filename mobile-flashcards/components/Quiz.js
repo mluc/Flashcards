@@ -6,7 +6,7 @@ import {gray, lightBlue, white} from "../utils/colors";
 import {NavigationActions} from "react-navigation";
 import {
     AnswerBtn,
-    BackToDeskBtn,
+    BackToDeckBtn,
     CorrectBtn,
     IncorrectBtn,
     NextQuestionBtn,
@@ -64,7 +64,11 @@ class Quiz extends Component {
     checkAnswer = (questionNum, cardsArrayLength) => () => {
         const {isCorrect, correctCount} = this.state
         if (isCorrect) {
-            this.setState(() => ({correctCount: correctCount + 1}))
+            this.setState((prevState) => {
+                return {
+                    correctCount: prevState.correctCount + 1
+                }
+            })
         }
         const isDone = questionNum === cardsArrayLength
         if (isDone) {
@@ -95,7 +99,7 @@ class Quiz extends Component {
                         <TakeQuizAgainBtn onPress={this.takeQuizAgainClick}/>
                     </View>
                     <View style={{justifyContent: 'center'}}>
-                        <BackToDeskBtn onPress={() => this.props.navigation.dispatch(NavigationActions.back())}/>
+                        <BackToDeckBtn onPress={() => this.props.navigation.dispatch(NavigationActions.back())}/>
                     </View>
                 </View>
             )

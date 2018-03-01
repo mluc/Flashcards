@@ -5,7 +5,7 @@ import {gray, lightBlue, white} from "../utils/colors";
 import {AddCardBtn, StartQuizBtn} from "./Buttons";
 
 
-class DeskDetail extends Component {
+class DeckDetail extends Component {
     static navigationOptions = ({navigation}) => {
         const {entryId} = navigation.state.params
 
@@ -13,6 +13,7 @@ class DeskDetail extends Component {
             title: entryId
         }
     }
+
 
     render() {
         const {entryId, cards} = this.props
@@ -79,4 +80,4 @@ function mapStateToProps(state, {navigation}) {
 
 export default connect(
     mapStateToProps
-)(DeskDetail)
+)(DeckDetail)

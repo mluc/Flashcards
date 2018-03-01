@@ -1,25 +1,25 @@
-export const GET_DESKS = 'GET_DESKS'
-export const GET_DESK = 'GET_DESK'
-export const SAVE_DESK_TITLE = 'SAVE_DESK_TITLE'
-export const ADD_CARD_TO_DESK = 'ADD_CARD_TO_DESK'
+export const GET_DECKS = 'GET_DECKS'
+export const GET_DECK = 'GET_DECK'
+export const SAVE_DECK_TITLE = 'SAVE_DECK_TITLE'
+export const ADD_CARD_TO_DECK = 'ADD_CARD_TO_DECK'
 
-export function getDesks(entries) {
+export function getDecks(entries) {
     return {
-        type: GET_DESKS,
+        type: GET_DECKS,
         entries
     }
 }
 
-export function getDesk({id}) {
+export function getDeck({id}) {
     return {
-        type: GET_DESK,
+        type: GET_DECK,
         id
     }
 }
 
 export function saveDeckTitle({title}) {
     return {
-        type: SAVE_DESK_TITLE,
+        type: SAVE_DECK_TITLE,
 
         title
     }
@@ -27,7 +27,7 @@ export function saveDeckTitle({title}) {
 
 export function addCardToDeck({title, card}) {
     return {
-        type: ADD_CARD_TO_DESK,
+        type: ADD_CARD_TO_DECK,
         title,
         card
     }

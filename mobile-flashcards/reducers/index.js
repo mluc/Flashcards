@@ -1,17 +1,17 @@
-import {ADD_CARD_TO_DESK, GET_DESK, GET_DESKS, SAVE_DESK_TITLE} from "../actions";
+import {ADD_CARD_TO_DECK, GET_DECK, GET_DECKS, SAVE_DECK_TITLE} from "../actions";
 
 function entries(state = {}, action) {
     switch (action.type) {
 
-        case GET_DESKS :
+        case GET_DECKS :
             return {
                 ...state,
                 ...action.entries,
             }
-        case GET_DESK :
+        case GET_DECK :
             return state[action.id]
 
-        case SAVE_DESK_TITLE :
+        case SAVE_DECK_TITLE :
 
             const entry = {}
             entry[action.title] = {
@@ -22,7 +22,7 @@ function entries(state = {}, action) {
                 ...state,
                 ...entry
             }
-        case ADD_CARD_TO_DESK :
+        case ADD_CARD_TO_DECK :
             return {
                 ...state,
                 [action.title]: {

@@ -1,10 +1,10 @@
 import {AsyncStorage} from "react-native";
-import {CALENDAR_STORAGE_KEY, formatDesksResults} from "./_desks";
+import {CALENDAR_STORAGE_KEY, formatDecksResults} from "./_decks";
 
 
-export function fetchDesksResults() {
+export function fetchDecksResults() {
     return AsyncStorage.getItem(CALENDAR_STORAGE_KEY)
-        .then(formatDesksResults)
+        .then(formatDecksResults)
 }
 
 export function submitEntry({entry, key}) {
