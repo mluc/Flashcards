@@ -11,6 +11,11 @@ class AddDeck extends Component {
     componentDidMount() {
         this.setState(() => ({newTitle: null}))
     }
+
+    state = {
+        newTitle: null
+    }
+
     submit = () => {
         if (!this.state.newTitle) {
             return
@@ -31,10 +36,6 @@ class AddDeck extends Component {
             'DeckDetail',
             {entryId: this.state.newTitle}
         )
-    }
-
-    state = {
-        newTitle: null
     }
 
     render() {
