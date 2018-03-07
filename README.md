@@ -5,5 +5,5 @@ A cross-platform (iOS and Android) mobile application that allows users to organ
 * npm install
 * npm start or yarn start
 * download Expo: scan QR code
-### Platform:
+### Tested Platform:
 * Android
